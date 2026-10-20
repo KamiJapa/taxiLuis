@@ -77,6 +77,13 @@ if (form) {
     input.parentNode.insertBefore(wrapper, input);
     wrapper.append(input);
 
+    const hitArea = document.createElement("button");
+    hitArea.type = "button";
+    hitArea.className = "picker-hit-area";
+    hitArea.tabIndex = -1;
+    hitArea.setAttribute("aria-hidden", "true");
+    wrapper.append(hitArea);
+
     const panel = document.createElement("div");
     panel.className = "picker-popover";
     panel.hidden = true;
@@ -167,7 +174,8 @@ if (form) {
       panel.hidden = false;
     };
 
-    input.addEventListener("click", () => {
+    hitArea.addEventListener("click", () => {
+      input.focus({ preventScroll: true });
       try {
         if (typeof input.showPicker === "function") {
           input.showPicker();
@@ -176,12 +184,6 @@ if (form) {
       } catch { /* Use the accessible in-page picker when native pickers are unavailable. */ }
       if (input.type === "date") openDatePicker();
       else openTimePicker();
-    });
-    input.addEventListener("pointerdown", () => {
-      if (typeof input.showPicker !== "function") {
-        if (input.type === "date") openDatePicker();
-        else openTimePicker();
-      }
     });
 
     document.addEventListener("pointerdown", (event) => {
