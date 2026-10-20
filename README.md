@@ -44,35 +44,22 @@ As duas logomarcas oficiais citadas no briefing não estavam incluídas nos anex
 
 O título, a descrição, os metadados Open Graph e os dados estruturados usam apenas informações fornecidas. Não há endereço físico, avaliações, tarifas, URL canônica, sitemap ou domínio presumido. A imagem Open Graph não recebeu URL absoluta: adicionar og:image, canonical e sitemap.xml depois de conhecer o domínio definitivo. Após o primeiro deploy, registre a URL *.pages.dev efetivamente criada ou o domínio próprio autorizado e atualize esses itens.
 
-## Deploy — Cloudflare Pages
+## Deploy — Cloudflare Workers
 
-Compatibilidade preparada para Pages com integração Git:
+O site está publicado como Worker estático, com os arquivos gerados em `dist/`:
 
+- Worker: `taxi-central-rio-preto-ls`.
+- URL pública: https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev.
 - Diretório raiz do projeto: raiz do repositório.
-- Comando de build: npm run build.
-- Diretório de saída: dist.
-- Preset: None / sem framework.
-- Node.js para o build: versão 22; .nvmrc fixa 22.18.0.
-- Servidor de produção: nenhum.
-- Pages Functions, Workers e banco de dados: não utilizados.
+- Build: `npm run build`.
+- Deploy: `npm run deploy` (executa `cf deploy`).
+- Node.js: 22; `.nvmrc` fixa 22.18.0.
+- Arquivos de configuração: `cloudflare.config.ts` e `wrangler.config.ts`.
+- Cloudflare Access permanece desativado para permitir acesso público ao site.
 
-1. Envie o conteúdo desta pasta para a branch de produção main do repositório KamiJapa/taxiLuis.
-2. No painel Cloudflare, abra Workers & Pages e crie uma aplicação Pages com integração Git.
-3. Conecte e autorize a integração do GitHub, selecione KamiJapa/taxiLuis e a branch main.
-4. Escolha o preset None e configure npm run build como comando e dist como diretório de saída. Se o painel solicitar uma versão de Node, informe 22.18.0.
-5. Inicie o deploy e teste o endereço real *.pages.dev, inclusive no celular. A integração Git do Pages cria novos deploys para pushes na branch de produção e endereços de prévia para outras branches, conforme os controles configurados no painel.
-6. Quando houver domínio próprio autorizado, adicione-o em Custom domains nas configurações do projeto e atualize canonical, Open Graph e sitemap com a URL definitiva.
+O Worker foi publicado em 20/10/2026. Para deploys automáticos por push, conecte o GitHub em Workers & Pages > Worker > Settings > Builds > Connect, autorize o app Cloudflare para o repositório KamiJapa/taxiLuis e selecione `main`. Depois, use `npm run build` como Build command e `npm run deploy` como Deploy command. A autorização GitHub é uma etapa única da conta; até que seja concluída, novos pushes não iniciam builds no Cloudflare. Ative Preview builds se quiser implantações de branches de teste.
 
-Confira a documentação atual do [Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/), [build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/) e do arquivo [_headers](https://developers.cloudflare.com/pages/configuration/headers/).
-
-O repositório KamiJapa/taxiLuis estava vazio no momento da preparação. A cópia local já tem branch main e remote origin configurados, sem commits ou push. Para revisar e publicar a primeira versão no GitHub a partir deste diretório:
-
-    git init -b main
-    git add -A
-    git commit -m "feat: landing page Taxi Central Rio Preto LS"
-    git push -u origin main
-
-O init já foi feito nesta cópia e pode ser omitido. O commit e o push não foram realizados nesta preparação.
+Consulte a documentação de [Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/), [configuração de build](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/) e [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
 
 ## Verificação e relatório
 
@@ -86,7 +73,7 @@ Depois de executar npm run build, revisar a pasta dist/ e concluir o fluxo no na
 6. Abrir a conversa de WhatsApp e conferir o texto, sem enviá-lo automaticamente.
 7. Revisar menu, âncoras, foco pelo teclado, mobile, HTTPS e console depois do deploy.
 
-Nenhum deploy foi realizado. A hospedagem Cloudflare, branch de produção, URL Pages e domínio ainda não foram confirmados. A marca oficial e autorização para usar fotos reais também estão pendentes.
+O deploy do Worker foi concluído. A integração GitHub para builds automáticos e um domínio próprio ainda não foram configurados. A marca oficial e autorização para usar fotos reais também estão pendentes.
 
 Verificações executadas nesta preparação:
 
@@ -94,13 +81,14 @@ Verificações executadas nesta preparação:
 - node --check js/main.js e node --check scripts/build.mjs: passaram.
 - npm install --package-lock-only --ignore-scripts --offline: passou; conferiu o package-lock existente, 74 pacotes e zero vulnerabilidades reportadas.
 - Checagens estáticas: passaram para JSON-LD válido, três etapas, seis opções de serviço, âncoras internas, caminhos locais, URL e codificação do WhatsApp e ausência de armazenamento ou chamadas de rede.
-- Revisão no navegador e teste HTTP local: não concluídos. A automação do Windows bloqueou a leitura da URL atual, e o sandbox negou a conexão por socket com o servidor local.
-- Testes depois do deploy, incluindo HTTPS, layout em aparelhos reais e console: pendentes porque nenhum deploy ocorreu.
+- `cf build` e `cf deploy --dry-run`: passaram; o Worker estático incluiu a pasta `dist/`.
+- `cf deploy`: passou; versão `e618ebaf-c7ca-4196-a1af-4a5b23c80cf4` publicada na URL acima.
+- Revisão visual no navegador, aparelhos reais e console após deploy: pendentes.
 
 ## Informações a confirmar antes da publicação oficial
 
 - Arquivos oficiais das duas versões da logomarca e autorização de uso.
 - Fotografias do Corolla Cross 2026 do Luís, com autorização, ou aprovação expressa da ilustração gerada.
 - Cor real do veículo, caso o cliente queira divulgá-la.
-- URL pages.dev ou domínio próprio definitivo.
-- Branch de produção escolhida no painel e autorização para publicar.
+- Autorização do app Cloudflare para integrar o repositório GitHub e automatizar builds da branch `main`.
+- Domínio próprio, se o cliente quiser usar um endereço personalizado.

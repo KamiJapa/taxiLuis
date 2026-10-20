@@ -9,4 +9,4 @@ const folders = ["assets", "js"];
 await mkdir(output, { recursive: true });
 for (const file of files) await cp(resolve(root, file), resolve(output, file));
 for (const folder of folders) await cp(resolve(root, folder), resolve(output, folder), { recursive: true });
-console.log("Cloudflare Pages output created at dist/");
+console.log("Static site output created at dist/");
