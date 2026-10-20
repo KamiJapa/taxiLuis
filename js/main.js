@@ -85,10 +85,12 @@ if (form) {
     wrapper.append(hitArea);
 
     hitArea.addEventListener("click", () => {
+      input.focus({ preventScroll: true });
       try {
         if (typeof input.showPicker === "function") input.showPicker();
         else input.focus();
-      } catch {
+      } catch (error) {
+        console.warn("Não foi possível abrir o seletor nativo de data/hora.", error);
         input.focus();
       }
     });
