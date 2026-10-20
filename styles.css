@@ -200,7 +200,8 @@ h1 em, h2 em { color: var(--gold-light); font-weight: 400; }
 .field > label:not(.toggle-field) { display: block; margin-bottom: 5px; color: #33342f; font-size: 10px; font-weight: 700; }
 .field > label > span[aria-hidden="true"] { color: #957822; }
 .field input:not([type="checkbox"]), .field select, .field textarea { width: 100%; min-height: 43px; padding: 10px 11px; border: 1px solid #d9d7ce; border-radius: 0; color: #252621; background: #fff; font-size: 12px; }
-.field input[type="date"], .field input[type="time"] { cursor: pointer; }
+.field input[type="date"], .field input[type="time"] { position: relative; cursor: pointer; }
+.field input[type="date"]::-webkit-calendar-picker-indicator, .field input[type="time"]::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .field textarea { resize: vertical; line-height: 1.55; }
 .field input::placeholder, .field textarea::placeholder { color: #aaa99f; }
 .field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: #a73224; }
