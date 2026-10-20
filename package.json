@@ -1,0 +1,12 @@
+{
+  "name": "taxi-central-rio-preto-ls",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page estática e planejador de viagens do Táxi Central Rio Preto LS.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify && node ./scripts/build.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
