@@ -72,7 +72,7 @@ if (form) {
   };
 
   form.querySelectorAll('input[type="date"], input[type="time"]').forEach((input) => {
-    input.addEventListener("pointerdown", () => {
+    input.addEventListener("click", () => {
       if (typeof input.showPicker !== "function") return;
       try {
         input.showPicker();
