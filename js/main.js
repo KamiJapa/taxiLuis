@@ -77,22 +77,112 @@ if (form) {
     input.parentNode.insertBefore(wrapper, input);
     wrapper.append(input);
 
-    const hitArea = document.createElement("button");
-    hitArea.type = "button";
-    hitArea.className = "picker-hit-area";
-    hitArea.tabIndex = -1;
-    hitArea.setAttribute("aria-hidden", "true");
-    wrapper.append(hitArea);
+    const panel = document.createElement("div");
+    panel.className = "picker-popover";
+    panel.hidden = true;
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", input.type === "date" ? "Escolher data" : "Escolher horário");
+    wrapper.append(panel);
 
-    hitArea.addEventListener("click", () => {
-      input.focus({ preventScroll: true });
-      try {
-        if (typeof input.showPicker === "function") input.showPicker();
-        else input.focus();
-      } catch (error) {
-        console.warn("Não foi possível abrir o seletor nativo de data/hora.", error);
-        input.focus();
+    const closePanel = () => { panel.hidden = true; };
+    const updateInput = (value) => {
+      input.value = value;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      closePanel();
+    };
+    const addButton = (label, className, action, disabled = false) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = className;
+      button.textContent = label;
+      button.disabled = disabled;
+      button.addEventListener("click", action);
+      return button;
+    };
+
+    const openDatePicker = () => {
+      let month = input.value ? new Date(`${input.value}T12:00:00`) : new Date();
+      month.setDate(1);
+
+      const render = () => {
+        panel.replaceChildren();
+        const header = document.createElement("div");
+        header.className = "picker-popover__header";
+        header.append(
+          addButton("‹", "picker-popover__nav", () => { month.setMonth(month.getMonth() - 1); render(); }),
+        );
+        const title = document.createElement("strong");
+        title.textContent = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(month);
+        header.append(title);
+        header.append(
+          addButton("›", "picker-popover__nav", () => { month.setMonth(month.getMonth() + 1); render(); }),
+        );
+        panel.append(header);
+
+        const grid = document.createElement("div");
+        grid.className = "picker-calendar";
+        ["D", "S", "T", "Q", "Q", "S", "S"].forEach((day) => {
+          const weekday = document.createElement("span");
+          weekday.className = "picker-calendar__weekday";
+          weekday.textContent = day;
+          grid.append(weekday);
+        });
+
+        const firstDay = new Date(month.getFullYear(), month.getMonth(), 1).getDay();
+        const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+        const min = input.min ? new Date(`${input.min}T00:00:00`) : null;
+        const max = input.max ? new Date(`${input.max}T23:59:59`) : null;
+        for (let blank = 0; blank < firstDay; blank += 1) {
+          const spacer = document.createElement("span");
+          spacer.className = "picker-calendar__spacer";
+          grid.append(spacer);
+        }
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const date = new Date(month.getFullYear(), month.getMonth(), day, 12);
+          const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const outsideLimits = (min && date < min) || (max && date > max);
+          grid.append(addButton(String(day), `picker-calendar__day${input.value === value ? " is-selected" : ""}`, () => updateInput(value), outsideLimits));
+        }
+        panel.append(grid);
+      };
+
+      render();
+      panel.hidden = false;
+    };
+
+    const openTimePicker = () => {
+      panel.replaceChildren();
+      const heading = document.createElement("strong");
+      heading.className = "picker-time__title";
+      heading.textContent = "Escolha o horário";
+      panel.append(heading);
+      const grid = document.createElement("div");
+      grid.className = "picker-time__grid";
+      for (let minutes = 0; minutes < 24 * 60; minutes += 15) {
+        const value = `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+        grid.append(addButton(value, `picker-time__option${input.value === value ? " is-selected" : ""}`, () => updateInput(value)));
       }
+      panel.append(grid);
+      panel.hidden = false;
+    };
+
+    input.addEventListener("click", () => {
+      try {
+        if (typeof input.showPicker === "function") {
+          input.showPicker();
+          return;
+        }
+      } catch { /* Use the accessible in-page picker when native pickers are unavailable. */ }
+      if (input.type === "date") openDatePicker();
+      else openTimePicker();
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!wrapper.contains(event.target)) closePanel();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) closePanel();
     });
   });
 
