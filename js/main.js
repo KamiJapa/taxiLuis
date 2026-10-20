@@ -177,6 +177,12 @@ if (form) {
       if (input.type === "date") openDatePicker();
       else openTimePicker();
     });
+    input.addEventListener("pointerdown", () => {
+      if (typeof input.showPicker !== "function") {
+        if (input.type === "date") openDatePicker();
+        else openTimePicker();
+      }
+    });
 
     document.addEventListener("pointerdown", (event) => {
       if (!wrapper.contains(event.target)) closePanel();
