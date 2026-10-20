@@ -72,8 +72,8 @@ if (form) {
   };
 
   form.querySelectorAll('input[type="date"], input[type="time"]').forEach((input) => {
-    input.addEventListener("click", (event) => {
-      if (typeof input.showPicker !== "function" || event.offsetX >= input.clientWidth - 40) return;
+    input.addEventListener("click", () => {
+      if (typeof input.showPicker !== "function") return;
       try {
         input.showPicker();
       } catch {
