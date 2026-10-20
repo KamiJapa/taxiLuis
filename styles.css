@@ -135,8 +135,6 @@ h1 em, h2 em { color: var(--gold-light); font-weight: 400; }
 .vehicle__label { position: absolute; left: 14px; bottom: 12px; padding: 7px 10px; color: rgba(255,255,255,.86); background: rgba(8,9,11,.76); font-size: 9px; }
 .vehicle__copy h2 { margin-bottom: 20px; font-size: clamp(42px, 5.2vw, 65px); line-height: 1; }
 .vehicle__copy > p:not(.eyebrow) { color: #b5b5b1; font-size: 14px; line-height: 1.8; }
-.vehicle__note { display: flex; gap: 10px; padding: 15px; border-left: 2px solid var(--gold); background: rgba(212,175,55,.06); font-size: 11px !important; }
-.vehicle__note span { color: var(--gold); }
 .vehicle__spec { display: flex; flex-direction: column; gap: 4px; margin: 24px 0; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .vehicle__spec span { color: var(--muted-dim); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
 .vehicle__spec strong { font: 20px var(--display); font-weight: 400; }
@@ -418,7 +416,6 @@ h1 { line-height: 1.04; }
 .difference__list p { font-size: 15px; }
 .vehicle__label { font-size: 12px; }
 .vehicle__copy > p:not(.eyebrow) { font-size: 16px; }
-.vehicle__note { font-size: 14px !important; }
 .vehicle__spec span { font-size: 11px; }
 .vehicle__spec strong { font-size: 22px; }
 .regions__content > p:first-child { font-size: 18px; }
