@@ -72,10 +72,22 @@ if (form) {
   };
 
   form.querySelectorAll('input[type="date"], input[type="time"]').forEach((input) => {
-    input.addEventListener("click", () => {
-      if (typeof input.showPicker !== "function") return;
+    const wrapper = document.createElement("span");
+    wrapper.className = "picker-input";
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.append(input);
+
+    const hitArea = document.createElement("button");
+    hitArea.type = "button";
+    hitArea.className = "picker-hit-area";
+    hitArea.tabIndex = -1;
+    hitArea.setAttribute("aria-hidden", "true");
+    wrapper.append(hitArea);
+
+    hitArea.addEventListener("click", () => {
       try {
-        input.showPicker();
+        if (typeof input.showPicker === "function") input.showPicker();
+        else input.focus();
       } catch {
         input.focus();
       }
