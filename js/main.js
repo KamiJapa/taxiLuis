@@ -176,12 +176,6 @@ if (form) {
 
     hitArea.addEventListener("click", () => {
       input.focus({ preventScroll: true });
-      try {
-        if (typeof input.showPicker === "function") {
-          input.showPicker();
-          return;
-        }
-      } catch { /* Use the accessible in-page picker when native pickers are unavailable. */ }
       if (input.type === "date") openDatePicker();
       else openTimePicker();
     });
