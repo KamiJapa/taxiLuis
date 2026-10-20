@@ -71,6 +71,17 @@ if (form) {
     form.elements.returnDate.min = value("travelDate") || today;
   };
 
+  form.querySelectorAll('input[type="date"], input[type="time"]').forEach((input) => {
+    input.addEventListener("click", (event) => {
+      if (typeof input.showPicker !== "function" || event.offsetX >= input.clientWidth - 40) return;
+      try {
+        input.showPicker();
+      } catch {
+        input.focus();
+      }
+    });
+  });
+
   const setStep = (step) => {
     currentStep = step;
     steps.forEach((section) => {
@@ -303,3 +314,4 @@ if (form) {
   setDateLimits();
 const year = document.querySelector("#current-year");
 if (year) year.textContent = new Date().getFullYear();
+
