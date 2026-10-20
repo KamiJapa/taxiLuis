@@ -202,7 +202,21 @@ h1 em, h2 em { color: var(--gold-light); font-weight: 400; }
 .field input:not([type="checkbox"]), .field select, .field textarea { width: 100%; min-height: 43px; padding: 10px 11px; border: 1px solid #d9d7ce; border-radius: 0; color: #252621; background: #fff; font-size: 12px; }
 .field input[type="date"], .field input[type="time"] { cursor: pointer; }
 .picker-input { position: relative; display: block; }
-.picker-hit-area { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; opacity: 0; cursor: pointer; }
+.picker-popover[hidden] { display: none; }
+.picker-popover { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; width: min(310px, calc(100vw - 48px)); padding: 12px; border: 1px solid #d9d7ce; background: #fff; color: #252621; box-shadow: 0 12px 30px rgba(18, 19, 16, .2); }
+.picker-popover__header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; text-transform: capitalize; }
+.picker-popover__header strong, .picker-time__title { font-size: 14px; font-weight: 700; }
+.picker-popover__nav { width: 34px; height: 34px; border: 1px solid #e1dfd6; background: #fff; color: #252621; font-size: 22px; line-height: 1; cursor: pointer; }
+.picker-calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; text-align: center; }
+.picker-calendar__weekday { padding: 6px 0; color: #74777d; font-size: 12px; font-weight: 700; }
+.picker-calendar__spacer { min-height: 34px; }
+.picker-calendar__day { min-height: 34px; border: 0; background: transparent; color: #252621; font: inherit; font-size: 13px; cursor: pointer; }
+.picker-calendar__day:hover:not(:disabled), .picker-calendar__day.is-selected { background: #d4af37; color: #171614; }
+.picker-calendar__day:disabled { color: #b9b8b0; cursor: not-allowed; }
+.picker-time__title { display: block; margin: 2px 0 10px; }
+.picker-time__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; max-height: 245px; overflow-y: auto; }
+.picker-time__option { min-height: 36px; border: 1px solid #e1dfd6; background: #fff; color: #252621; font: inherit; font-size: 13px; cursor: pointer; }
+.picker-time__option:hover, .picker-time__option.is-selected { border-color: #d4af37; background: #d4af37; color: #171614; }
 .field textarea { resize: vertical; line-height: 1.55; }
 .field input::placeholder, .field textarea::placeholder { color: #aaa99f; }
 .field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: #a73224; }
