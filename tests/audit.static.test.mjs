@@ -82,7 +82,7 @@ test("all local HTML asset references exist in dist after build", () => {
   for (const ref of refs) {
     if (/^(?:https?:|mailto:|tel:|#|data:|javascript:)/i.test(ref)) continue;
     const pathname = new URL(ref, "https://local.invalid").pathname;
-    const relative = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
+    const relative = pathname === "/" ? "index.html" : pathname === "/privacidade" ? "privacidade.html" : pathname.replace(/^\/+/, "");
     const target = resolve(dist, relative);
     if (!target.startsWith(dist + sep) || !existsSync(target)) missing.push(ref);
   }
@@ -95,5 +95,14 @@ test("build packages 404, privacy, and no-script mobile navigation fallback", ()
   }
   assert.match(html, /<noscript><link rel="stylesheet" href="\/noscript\.css"><\/noscript>/);
   assert.match(read("cloudflare.config.ts"), /notFoundHandling": "404-page"/);
+  assert.match(read("wrangler.jsonc"), /"not_found_handling": "404-page"/);
+  assert.match(read("wrangler.jsonc"), /"html_handling": "auto-trailing-slash"/);
   assert.match(read("_headers"), /Content-Security-Policy:/);
+  assert.match(read("_headers"), /Strict-Transport-Security: max-age=31536000/);
+  assert.match(read("privacidade.html"), /rel="canonical" href="https:\/\/taxi-central-rio-preto-ls\.japa-kamitm\.workers\.dev\/privacidade"/);
+  assert.match(html, /href="\/privacidade"/);
+  assert.match(html, /class="topline" role="region" aria-label="Informações de atendimento e orçamento"/);
+  assert.match(html, /aria-label="Orçamento sem compromisso pelo WhatsApp, abre em nova aba"/);
+  assert.match(html, /<aside aria-label="Contato rápido">/);
+  assert.match(read("styles.css"), /\.footer__bottom a \{[^}]*text-decoration: underline/s);
 });

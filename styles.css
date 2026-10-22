@@ -278,7 +278,7 @@ h1 em, h2 em { color: var(--gold-light); font-weight: 400; }
 .footer__col a:hover { color: var(--gold-light); }
 .footer__whatsapp { position: absolute; right: 0; top: 52px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line-gold); color: var(--gold); }
 .footer__bottom { display: flex; justify-content: space-between; gap: 20px; padding-block: 16px; border-top: 1px solid var(--line); color: var(--muted-dim); font-size: 9px; }
-.footer__bottom a { color: #c7c5bd; }
+.footer__bottom a { color: #c7c5bd; text-decoration: underline; text-underline-offset: 3px; }
 .footer__bottom a:hover { color: var(--gold-light); }
 .floating-whatsapp { position: fixed; z-index: 20; right: 22px; bottom: 22px; display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid rgba(212,175,55,.6); border-radius: 50%; color: #171307; background: var(--gold-light); box-shadow: 0 8px 26px rgba(0,0,0,.35); font-size: 19px; transition: transform .2s; }
 .floating-whatsapp[hidden] { display: none; }

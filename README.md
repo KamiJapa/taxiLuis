@@ -15,7 +15,9 @@ Landing page em português com planejador de viagens em três etapas. O formulá
 - `index.html`, `styles.css`, `tailwind.css`, `noscript.css`, `js/main.js`: interface e interações.
 - `assets/`: ilustração do veículo e ícone genérico provisório.
 - `404.html`, `privacidade.html`, `robots.txt`, `_headers`: conteúdo e configuração de arquivos estáticos.
-- `cloudflare.config.ts`, `wrangler.config.ts`: configuração do Worker e diretório de assets.
+- `cloudflare.config.ts`: configuração de execução usada pelo `cf` CLI.
+- `wrangler.jsonc`: configuração de execução lida pelo deploy conectado do Workers Builds (`npx wrangler deploy`).
+- `wrangler.config.ts`: opções de build para o `cf` CLI.
 - `scripts/build.mjs`: monta os arquivos finais em `dist/`.
 - `tests/`: verificações estáticas e fixtures temporários de auditoria.
 - Relatórios: `RELATORIO_TESTES_COMPLETO.md`, `RELATORIO_BUGS.md`, `CHECKLIST_PRE_PUBLICACAO.md`, `PENDENCIAS_CLIENTE.md`.
@@ -36,8 +38,9 @@ O `npm run build` gera `tailwind.css` e preenche `dist/`. `npm run test:static` 
 
 - Nome: `taxi-central-rio-preto-ls`.
 - Endereço atual: <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>.
-- Configuração: `cloudflare.config.ts`, saída estática em `dist/`.
+- Configuração: `cloudflare.config.ts` (deploy via `cf`) e `wrangler.jsonc` (deploy integrado atual via Wrangler), saída estática em `dist/`. Manter as opções de tratamento HTML e 404 alinhadas nos dois arquivos.
 - Verificar o pacote sem publicar: `cf build` e `cf deploy --dry-run`.
+- O Workers Builds do repositório está configurado para `npm run build` e `npx wrangler deploy --name taxi-central-rio-preto-ls --compatibility-date 2026-10-06 --assets ./dist`; o `wrangler.jsonc` fornece ao comando os modos de HTML e 404.
 - Publicar explicitamente: `cf deploy` (ou `npm run deploy`).
 
 O endereço `workers.dev` é temporário até a escolha de um domínio oficial. Depois disso, atualizar canonical, metadados sociais, sitemap e indexação. O push de `main` acionou o build e o deploy automático no Cloudflare; o resultado foi conferido no endereço público.
