@@ -1,13 +1,12 @@
 # Táxi Central Rio Preto LS — Luís
 
-Landing page em português com planejador de viagens em três etapas. O formulário valida localmente os dados, mostra um resumo e prepara uma mensagem para a pessoa revisar e abrir no WhatsApp. O site não confirma corridas, não envia dados a um backend e não armazena os campos do formulário.
+Landing page em português para o Táxi Central Rio Preto LS. O CTA principal abre diretamente uma conversa no WhatsApp do Luís; nenhum formulário ou dado de viagem é exigido. O site não confirma corridas nem envia mensagens automaticamente.
 
 ## Funcionalidades
 
-- Serviços de transporte urbano, intermunicipal, aeroporto, executivo, viagens particulares e outras solicitações.
-- Formulário com datas e horários acessíveis pela área inteira do campo, validação de ida e volta e informações condicionais de transfer.
-- Mensagem revisável antes da abertura do WhatsApp.
-- Menu móvel, navegação por teclado, FAQ nativo e fallback de navegação quando JavaScript está desativado.
+- Solicitação de corrida em um toque pelo WhatsApp, sem formulário ou cadastro.
+- Links contextuais para cada modalidade; telefone com chamada direta.
+- Menu móvel acessível, FAQ nativo e navegação sem JavaScript para os CTAs.
 - Páginas de privacidade e 404 para o Worker estático.
 
 ## Arquivos
@@ -51,4 +50,4 @@ A imagem principal é uma ilustração gerada para o layout e está identificada
 
 ## Estado da publicação
 
-O commit `f8d935c` foi publicado em `main` e implantado no Worker `taxi-central-rio-preto-ls`. A página pública e os seletores de data/horário foram conferidos após o deploy. O relatório de testes registra os resultados, avisos de dependências e itens ainda pendentes. Nenhum dado de formulário foi enviado durante os testes.
+A publicação mais recente é registrada no relatório `RELATORIO_REFORMULACAO_UX_LUIS.md`.

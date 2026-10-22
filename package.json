@@ -2,7 +2,7 @@
   "name": "taxi-central-rio-preto-ls",
   "version": "1.0.0",
   "private": true,
-  "description": "Landing page estática e planejador de viagens do Táxi Central Rio Preto LS.",
+  "description": "Landing page comercial do Táxi Central Rio Preto LS com contato direto pelo WhatsApp.",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify && node ./scripts/build.mjs",
     "test:static": "node --test",
