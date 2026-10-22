@@ -1,0 +1,35 @@
+@media (max-width: 760px) {
+  .header__inner {
+    height: auto;
+    min-height: 70px;
+    flex-wrap: wrap;
+    padding-block: 13px;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .main-nav {
+    position: static;
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 17px;
+    border: 0;
+    background: transparent;
+  }
+
+  .main-nav > a:not(.button) {
+    padding: 13px 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    font-size: 15px;
+  }
+
+  .main-nav .nav-cta {
+    display: inline-flex;
+    margin-top: 12px;
+  }
+}

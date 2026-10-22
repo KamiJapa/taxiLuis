@@ -5,6 +5,7 @@
   "description": "Landing page estática e planejador de viagens do Táxi Central Rio Preto LS.",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify && node ./scripts/build.mjs",
+    "test:static": "node --test",
     "deploy": "cf deploy"
   },
   "devDependencies": {

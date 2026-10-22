@@ -12,4 +12,5 @@
   Cache-Control: public, max-age=86400
 /tailwind.css
   Cache-Control: public, max-age=86400
-
+/noscript.css
+  Cache-Control: public, max-age=86400
