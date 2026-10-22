@@ -2,14 +2,15 @@
 
 **Data:** 22/10/2026  
 **Commit analisado:** `0f037e2806541c4428da0e93b260e691df5d8700`  
+**Commit publicado:** `26e4804bfac04ad7ee6f9e1ea991bf3c2a60370f`  
 **URL pública:** https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/  
 **Veredito:** **PUBLICAÇÃO PENDENTE — CORREÇÕES NECESSÁRIAS**
 
 ## A. Resultado geral
 
-A versão auditada é o commit acima; alterações desta rodada permanecem locais. Não houve deploy, push ou merge. As verificações finais locais passaram: build, 8/8 testes estáticos, sintaxe de `js/main.js`, `git diff --check` e dry-run do Wrangler (15 arquivos, sem upload).
+A versão inicialmente auditada é o commit acima. Depois das verificações, as correções foram enviadas para `main` no GitHub; o Workers Builds recebeu o evento de push e concluiu build/deploy com sucesso. Cloudflare registrou deployment `bf555178-557b-4097-9001-f70cb5b713e6`, versão `5d5bd917-fe32-4983-94dc-773baabd6a87`, 100% do tráfego, em 22/10/2026 às 17:09:27 UTC. As verificações locais antes do envio passaram: build, 8/8 testes estáticos, sintaxe de `js/main.js`, `git diff --check` e dry-run do Wrangler (15 arquivos, sem upload).
 
-Na versão pública, uma URL inexistente respondeu 404 sem corpo; HSTS não foi enviado; e a CSP bloqueou o preconnect do Google Fonts. A configuração conectada do Workers Builds executa Wrangler diretamente e não consome as opções de asset definidas para o `cf` CLI. Foram preparadas correções locais para esses pontos. A versão pública ainda não recebeu essas alterações.
+Na versão pública anterior ao novo deploy, uma URL inexistente respondeu 404 sem corpo; HSTS não foi enviado; e a CSP bloqueou o preconnect do Google Fonts. A configuração conectada do Workers Builds executa Wrangler diretamente e não consome as opções de asset definidas para o `cf` CLI. As correções foram publicadas. Não foi possível revalidar a resposta HTTP após o deploy porque o DNS do domínio não resolveu neste ambiente (`Este host não é conhecido`).
 
 ## B. Testes e ambiente
 
@@ -23,7 +24,8 @@ Na versão pública, uma URL inexistente respondeu 404 sem corpo; HSTS não foi 
 | Resultado | Quantidade / situação |
 |---|---|
 | Aprovado | 8 testes estáticos; build, sintaxe, diff, `cf build`, dry-run; áreas funcionais exploratórias descritas acima |
-| Reprovado | 1 falha reproduzida: 404 público vazio; 2 cabeçalhos/configuração pública discrepantes (HSTS ausente, CSP incompleta) |
+| Reprovado na versão anterior | 1 falha reproduzida: 404 público vazio; 2 cabeçalhos/configuração discrepantes (HSTS ausente, CSP incompleta) |
+| Publicação | Workers Builds concluiu com sucesso; revalidação HTTP pós-deploy bloqueada por DNS |
 | Bloqueado/incompleto | Firefox, axe local após as correções, Lighthouse, zoom real 200/400%, aparelhos físicos e matriz completa de fluxos em três motores |
 
 ## C. Segurança e dependências
@@ -44,7 +46,7 @@ Esses pacotes compõem as ferramentas de build e não foram encontrados nos asse
 | HSTS | Ausente na resposta pública | `max-age=31536000` em `_headers` |
 | Cache-Control | HTML revalida; assets 1 ou 30 dias | Mantido |
 
-Os headers locais precisam de publicação e nova medição para confirmar efeito.
+Os headers foram incluídos no deploy bem-sucedido. Uma nova medição HTTP é necessária para confirmar que a resposta pública final entrega as diretivas esperadas.
 
 ## D. Acessibilidade
 
@@ -57,10 +59,10 @@ Axe na página pública reportou link de crédito sem sublinhado/contraste sufic
 ## F. Cloudflare
 
 - Worker publicado: `taxi-central-rio-preto-ls.japa-kamitm.workers.dev`.
-- Uma rota inexistente retornou HTTP 404, `Content-Length: 0`, sem `Content-Type` e corpo. A página personalizada não foi entregue.
+- Antes da correção, uma rota inexistente retornava HTTP 404 com `Content-Length: 0`, sem `Content-Type` e sem corpo. Após o commit acima, Workers Builds concluiu build/deploy e Cloudflare registrou a versão `5d5bd917-fe32-4983-94dc-773baabd6a87` ativa com 100% do tráfego. A confirmação da rota e dos headers pós-deploy ficou bloqueada porque o hostname não resolveu via DNS no ambiente de auditoria.
 - O comando do Workers Builds usa `npx wrangler deploy ... --assets ./dist`; ele não usa a configuração TypeScript do `cf` CLI. O novo `wrangler.jsonc` configura `not_found_handling: "404-page"` e `html_handling: "auto-trailing-slash"`; o dry-run reconheceu o arquivo e leu 15 assets.
 - `/privacidade.html` redireciona para `/privacidade`; canonical e link interno locais foram alinhados a `/privacidade`.
-- Nenhuma mudança na conta Cloudflare, deploy, DNS ou domínio personalizado foi realizada.
+- O deploy foi feito automaticamente após o push autorizado. Não houve alteração de DNS nem conexão de domínio personalizado.
 
 ## G. Privacidade e SEO
 
@@ -108,4 +110,4 @@ Canonical e metadados sociais usam workers.dev temporário; `robots.txt` permite
 
 ## Veredito
 
-**PUBLICAÇÃO PENDENTE — CORREÇÕES NECESSÁRIAS.** Build e suíte estática locais passaram, mas a produção tem 404 vazio e os cabeçalhos corrigidos ainda não foram publicados. Lighthouse não foi executado, axe local e Firefox ficaram incompletos, e domínio/conteúdo aguardam confirmação. Aguardar autorização explícita antes de publicar.
+**APROVADO COM PENDÊNCIAS NÃO BLOQUEANTES.** Build e suíte estática passaram; GitHub e Cloudflare confirmam o commit e o deploy. A correção de 404/headers foi implantada, mas a resposta HTTP final não pôde ser retestada por falha DNS no ambiente. Lighthouse, Firefox e axe após correção permanecem pendentes, assim como domínio e aprovações comerciais. Nenhuma mensagem real foi enviada.

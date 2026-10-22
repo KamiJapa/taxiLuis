@@ -24,7 +24,7 @@
 | 18 | Privacidade | **PENDENTE** | Página local criada; requer revisão jurídica e confirmação dos termos/contato definitivos. |
 | 19 | Analytics/cookies | **APROVADO** | Auditoria estática não encontrou rastreadores ou persistência no formulário. |
 | 20 | Marca e imagem do carro | **PENDENTE** | Obter aprovação da ilustração ou imagem autorizada e arquivo de marca oficial. |
-| 21 | 404 e headers de produção | **PENDENTE** | Rota inválida retorna 404 com corpo vazio; HSTS ausente e CSP de preconnect incompleta. Correções locais preparadas, aguardam publicação e rechecagem. |
+| 21 | 404 e headers de produção | **PENDENTE** | 404 vazio, HSTS e CSP foram corrigidos e publicados no deploy `bf555178-557b-4097-9001-f70cb5b713e6`; rechecagem HTTP pós-deploy aguarda resolução DNS no ambiente. |
 | 22 | Performance de campo | **PENDENTE** | Lighthouse não executado; Web Vitals e rede limitada não medidos. |
 | 23 | CI GitHub ↔ Cloudflare | **APROVADO** | Configuração do Workers Builds consultada. Deploy conectado usa Wrangler direto; novo `wrangler.jsonc` adiciona as opções de 404/HTML. |
 | 24 | Revisão pública final | **PENDENTE** | Depois de resolver itens anteriores, validar URL, console, links, 404 e cabeçalhos sem enviar mensagens reais. |
@@ -34,4 +34,4 @@
 
 **Go técnico local:** build/testes estáticos aprovados, com cobertura incompleta em Firefox, Lighthouse e axe após correções.
 
-**Go para publicação oficial:** não. A produção tem falha 404 comprovada e headers incompletos; correções locais ainda não publicadas. Nenhum deploy foi realizado nesta auditoria.
+**Go para publicação oficial:** deploy técnico concluído. Revalidar HTTP/404/headers quando DNS estiver acessível; domínio oficial, Lighthouse e aprovações do cliente continuam pendentes.
