@@ -50,6 +50,7 @@ O tema escuro com detalhes dourados, o estilo editorial, a ilustração existent
 | axe-core 4.13.0 | **APROVADO PARCIALMENTE** — 0 violações reportadas em início, privacidade e 404. O axe marcou verificações de contraste e `aria-prohibited-attr` como incompletas; avaliação automatizada não demonstra conformidade WCAG integral. |
 | Lighthouse | **BLOQUEADO** — CLI não disponível no projeto e o ambiente não consegue acessar o registry para obter ferramentas. Nenhuma pontuação foi estimada. |
 | `npm audit` | **BLOQUEADO** — `ENOTFOUND registry.npmjs.org`. A consulta atual não pôde atualizar o estado dos avisos. |
+| Resposta HTTP pública | **BLOQUEADA** — a requisição HTTPS terminou com “Este host não é conhecido”; o ambiente não resolveu o host para conferir conteúdo e cabeçalhos. |
 
 Node disponível: `v24.21.0`; `.nvmrc` indica `22.23.0`. O build foi executado com a versão instalada.
 
@@ -81,13 +82,15 @@ Informações não confirmadas não foram apresentadas como fatos. Não foram cr
 
 ## I. Estado de publicação
 
-A publicação em GitHub e Cloudflare foi solicitada diretamente pelo proprietário depois do prompt anexado, que originalmente pedia uma entrega apenas local. A atualização de `main` no GitHub acionará o Workers Builds configurado para este repositório. O resultado do build e o deployment público serão confirmados após o push; até essa confirmação, o relatório não declara a nova versão publicada.
+O commit `925ebb0a74623ab8033aaed1433a68fa122914c2` foi enviado à branch `main` do GitHub. O Workers Builds recebeu o evento `push_event` para esse mesmo commit e concluiu build e deploy com `build_outcome: success`.
 
-O CLI local do Wrangler (`4.151.3`) não está autenticado nesta sessão. O `--dry-run` local passou. A publicação será feita pelo fluxo de Workers Builds conectado ao GitHub, sem alteração de DNS ou domínio.
+Cloudflare registrou deployment `fef9fd10-60b4-44db-81f5-4ca901aa615c`, versão `e2b84f01-8061-425c-9811-5e417aa983b1`, com 100% do tráfego, às 18:04:33 UTC de 22/10/2026. A requisição à URL pública não pôde ser confirmada nesta sessão por falha de resolução DNS (“Este host não é conhecido”); o status do plano de controle confirma o deployment, mas não substitui uma verificação HTTP do site.
+
+O CLI local do Wrangler (`4.151.3`) não está autenticado nesta sessão. O `--dry-run` local passou. O deployment de produção foi feito pelo Workers Builds conectado ao GitHub. Nenhuma alteração de DNS ou domínio foi realizada.
 
 ## J. Próximas ações
 
-1. Confirmar o resultado do Workers Builds e a resposta do Worker público.
+1. Repetir a verificação HTTP do site público quando a resolução DNS estiver disponível.
 2. Apresentar a experiência atualizada ao Luís para revisão do conteúdo comercial.
 3. Resolver as pendências comerciais e de acessibilidade antes da entrega definitiva.
 4. Atualizar domínio e metadados somente após escolha do domínio oficial.
