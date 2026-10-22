@@ -1,7 +1,7 @@
 # Relatório de testes funcionais — Táxi Central Rio Preto LS
 
 **Data:** 22/10/2026
-**Escopo:** auditoria local da versão atual do código e do pacote `dist/`. Não houve deploy, alteração de configuração publicada ou envio de mensagem real.
+**Escopo:** bateria funcional local da versão e do pacote `dist/`; o adendo ao final registra a publicação posterior e sua verificação no site público. Nenhuma mensagem real foi enviada.
 
 ## Resultado
 
@@ -67,3 +67,10 @@ Passos de reprodução, evidência e regressão estão em `RELATORIO_BUGS.md`.
 ## Parecer
 
 Não há defeito crítico ou alto reproduzido nos fluxos locais cobertos. O resultado **APROVADO COM PENDÊNCIAS NÃO BLOQUEANTES** vale para o código local. A aprovação final de publicação permanece condicionada aos itens de `CHECKLIST_PRE_PUBLICACAO.md`, especialmente confirmação das alegações, domínio, marca/foto, privacidade e validações em produção.
+
+## Adendo pós-publicação — 22/10/2026
+
+- O commit `f8d935cc4d6e0a9e995f763180c0a116f39dea2f` foi publicado na branch `main` do GitHub.
+- O push acionou o build/deploy automático no Cloudflare Workers. Deployment `8a7f4242-cc39-4c51-b647-8808ced2e83b`, versão `5f7f36a9-1105-4caa-8818-e457da9f5beb`, registrado às 16:36:11 UTC.
+- A URL pública foi aberta depois da implantação. A página inicial e as sete opções de serviço apareceram; o campo inteiro de data abriu o calendário, a seleção de 23/10/2026 funcionou e o campo de horário abriu as opções em intervalos de 15 minutos.
+- Esta revisão de produção não preencheu dados pessoais nem abriu/enviou uma conversa real. Os cabeçalhos HTTP, 404, outros navegadores e aparelhos físicos continuam sem validação.

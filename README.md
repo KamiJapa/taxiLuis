@@ -40,7 +40,7 @@ O `npm run build` gera `tailwind.css` e preenche `dist/`. `npm run test:static` 
 - Verificar o pacote sem publicar: `cf build` e `cf deploy --dry-run`.
 - Publicar explicitamente: `cf deploy` (ou `npm run deploy`).
 
-O endereço `workers.dev` é temporário até a escolha de um domínio oficial. Depois disso, atualizar canonical, metadados sociais, sitemap e indexação. A integração automática de builds GitHub/Cloudflare precisa ser conferida no painel; o push deste trabalho é acompanhado por deploy direto.
+O endereço `workers.dev` é temporário até a escolha de um domínio oficial. Depois disso, atualizar canonical, metadados sociais, sitemap e indexação. O push de `main` acionou o build e o deploy automático no Cloudflare; o resultado foi conferido no endereço público.
 
 ## Identidade, imagem e conteúdo
 
@@ -48,4 +48,4 @@ A imagem principal é uma ilustração gerada para o layout e está identificada
 
 ## Estado da publicação
 
-O código local passou pelo build, pela suíte estática e pelo dry-run Cloudflare. O relatório de testes registra os resultados, avisos de dependências e itens ainda pendentes. Nenhum dado de formulário foi enviado durante os testes.
+O commit `f8d935c` foi publicado em `main` e implantado no Worker `taxi-central-rio-preto-ls`. A página pública e os seletores de data/horário foram conferidos após o deploy. O relatório de testes registra os resultados, avisos de dependências e itens ainda pendentes. Nenhum dado de formulário foi enviado durante os testes.

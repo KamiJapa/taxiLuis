@@ -10,8 +10,8 @@ O código e os relatórios tratam este projeto como o site de Táxi Central Rio 
 6. **Marca:** fornecer o logo oficial em arquivo de boa qualidade e aprovar o favicon derivado.
 7. **Veículo:** aprovar a ilustração gerada ou fornecer fotografia real com autorização para uso; confirmar modelo/ano/cor antes de qualquer texto específico.
 8. **Privacidade:** revisar o texto de privacidade, links externos e contato aplicável ao responsável pelo serviço.
-9. **Aprovação final:** revisar o conteúdo e o site em domínio oficial. O teste atual não publicou versão nova.
+9. **Aprovação final:** revisar o conteúdo e o site em domínio oficial. As correções foram publicadas no endereço `workers.dev`, que permanece temporário.
 
 ## Estado técnico atual
 
-O fluxo local foi aprovado com pendências não bloqueantes. A aprovação final de publicação depende das confirmações acima e de verificar domínio/HTTP no ambiente de produção. O deploy foi deliberadamente omitido.
+O fluxo local foi aprovado com pendências não bloqueantes. As correções foram publicadas no Cloudflare Workers e o endereço público foi conferido. A aprovação para usar um domínio oficial ainda depende das confirmações acima e de verificar a rota 404 e os headers HTTP.

@@ -1,6 +1,8 @@
 # Relatório de bugs — auditoria funcional
 
-**Execução:** 22/10/2026 · Chromium local · build em `dist/` · nenhuma publicação.
+**Execução inicial:** 22/10/2026 · Chromium local · build em `dist/` · a auditoria não publicou a versão.
+
+**Adendo:** as correções foram publicadas depois pela branch `main`; consulte a seção pós-publicação em `RELATORIO_TESTES_COMPLETO.md` para a versão do Worker e a verificação pública.
 
 | ID | Severidade | Estado | Resumo |
 |---|---|---|---|
