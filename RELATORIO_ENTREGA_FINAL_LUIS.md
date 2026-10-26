@@ -2,7 +2,8 @@
 
 Data da revisão: 26 de outubro de 2026  
 Branch preparada: `preview/blue-identity-luis-2026-10`  
-Commit de implementação: `45d1ac28d4de00a1fd2d72692868883eb35716e3` (`Prepare blue taxi site evaluation branch`).
+Commit da implementação publicada: `45d1ac28d4de00a1fd2d72692868883eb35716e3` (`Prepare blue taxi site evaluation branch`).
+Commit final da branch, incluindo o relatório e o estado do preview: `f79509f0219a140b34d28c1747fd3ca40c6e1b1b` (`Record Cloudflare preview deployment`).
 
 ## Resumo executivo
 
