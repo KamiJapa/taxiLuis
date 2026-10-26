@@ -52,8 +52,8 @@ O endereço `workers.dev` é temporário até a escolha de um domínio oficial. 
 
 ## Identidade, imagem e conteúdo
 
-A ilustração do SUV branco foi preservada como imagem não documental e recebeu apenas a inscrição “TAXI” na placa ilustrativa. O arquivo original da ilustração continua em `assets/images/corolla-cross-ilustrativo.webp`. A foto/referência original enviada pelo cliente não está neste workspace; substitua a ilustração somente quando a imagem autorizada estiver disponível. O conteúdo atual afirma apenas o serviço de táxi e a cidade informados. A marca oficial e a aprovação final do novo azul ainda estão pendentes.
+A ilustração do SUV branco foi editada com ferramenta generativa para mostrar “TAXI” na placa ilustrativa; não é uma foto documental do veículo do Luís. O arquivo original continua em `assets/images/corolla-cross-ilustrativo.webp`. A foto/referência original enviada pelo cliente não está neste workspace; substitua a ilustração somente quando a imagem autorizada estiver disponível. O conteúdo atual afirma apenas o serviço de táxi e a cidade informados. A marca oficial e a aprovação final do novo azul ainda estão pendentes.
 
 ## Estado da publicação
 
-A última publicação principal e as pendências anteriores estão registradas em `RELATORIO_REFORMULACAO_UX_LUIS.md`. O trabalho de avaliação atual está detalhado em `RELATORIO_ENTREGA_FINAL_LUIS.md`; publicação pública temporária depende de egress Cloudflare no ambiente.
+A última publicação principal e as pendências anteriores estão registradas em `RELATORIO_REFORMULACAO_UX_LUIS.md`. O trabalho de avaliação está detalhado em `RELATORIO_ENTREGA_FINAL_LUIS.md`. Prévia temporária publicada em <https://taxi-central-rio-preto-ls-preview.forested-raptorex.workers.dev/> (versão Cloudflare `c3df555a-9c77-4617-a054-885d753089f4`). O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.

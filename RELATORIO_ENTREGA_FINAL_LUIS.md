@@ -24,7 +24,7 @@ O build, os testes estáticos, a validação HTML, a auditoria axe e a medição
 | Paleta e ritmo | Faixas navy, azul e claras, com dourado pontual, conforme a direção pedida. |
 | Hero e CTA | Headline local, WhatsApp e telefone mantidos no topo; o CTA cabe no primeiro viewport móvel. |
 | Tipografia | Hierarquia e espaçamento reproduzidos; usa fontes locais para não depender de um serviço externo. |
-| Veículo | Mantida a ilustração existente e editada apenas a placa ilustrativa para “TAXI”; nenhuma fotografia do cliente foi inventada. |
+| Veículo | A ilustração existente foi editada com ferramenta generativa para mostrar “TAXI” na placa ilustrativa. Ela está identificada como ilustração; a fotografia enviada pelo cliente não estava disponível. |
 | Serviços e texto | Conteúdo do conceito que sugeria serviços, números ou alegações não confirmados foi descartado. A cópia permanece limitada ao táxi, cidade e contato informados. |
 
 ## Alterações funcionais
@@ -37,7 +37,7 @@ O build, os testes estáticos, a validação HTML, a auditoria axe e a medição
 
 ## Veículo
 
-O original `assets/images/corolla-cross-ilustrativo.webp` foi preservado. A nova versão `assets/images/corolla-cross-ilustrativo-taxi.webp` é uma ilustração WebP com “TAXI” na placa ilustrativa, em 1536 × 1024 e cerca de 79 KB (o original tem cerca de 101 KB). A página identifica a imagem como ilustração, sem alegar que ela retrata o carro real do Luís.
+O original `assets/images/corolla-cross-ilustrativo.webp` foi preservado. A nova versão `assets/images/corolla-cross-ilustrativo-taxi.webp` foi produzida por edição generativa da ilustração existente para colocar “TAXI” na placa ilustrativa. É WebP, 1536 × 1024 e cerca de 79 KB (o original tem cerca de 101 KB). A página identifica a imagem como ilustração; ela não é a fotografia do veículo real do Luís. A referência/fotografia enviada pelo cliente não estava disponível no workspace.
 
 A imagem de referência/fotografia original enviada pelo cliente não estava anexada ao workspace. Para usá-la no lugar da ilustração, é necessário anexar o arquivo autorizado.
 
@@ -85,6 +85,7 @@ Métricas da execução: FCP 0,9 s; LCP 1,5 s; TBT 0 ms; CLS 0; Speed Index 0,9 
 | axe-core no Chromium | 0 violações automatizadas. |
 | Playwright no Chromium | Home 200; privacidade 200; página inexistente 404; menu, FAQ e 13 âncoras internas verificados; sem erros de console/rede. |
 | Larguras Playwright | 320, 360, 375, 390, 430, 768, 1024, 1280, 1440 e 1920 px; sem overflow horizontal. |
+| Reflow ampliado | Viewports de 640 px e 320 px usados para verificar o layout equivalente a 200% e 400% a partir de 1280 px; sem overflow e com CTA visível. Não foi uma alteração real de zoom do navegador. |
 | Firefox/WebKit | Não executados: os downloads do Playwright receberam `403 Domain forbidden`. |
 | `npm audit` | 11 avisos restantes, detalhados em Segurança. |
 
@@ -99,20 +100,22 @@ Capturas reais feitas no Chromium local:
 
 - Repositório: `KamiJapa/taxiLuis`.
 - `main` e o remoto estavam no commit base `ee929daeb3b409017637d6e4fc52fab00a3eee18` antes do trabalho.
-- A branch de avaliação foi criada para manter `main` intacta. O push desta branch será confirmado após o registro deste relatório.
+- Branch de avaliação enviada e confirmada: `preview/blue-identity-luis-2026-10`. O remoto confirma o commit final registrado no topo desta branch; `main` permanece no commit base `ee929daeb3b409017637d6e4fc52fab00a3eee18`.
 - Nenhum force push foi usado; nenhum outro repositório foi alterado.
 
 ## Cloudflare
 
 - `wrangler deploy --dry-run --name taxi-central-rio-preto-ls-preview ...` passou e empacotou 17 arquivos.
-- `wrangler whoami` confirmou que não há sessão Cloudflare autenticada nesta máquina.
-- `wrangler deploy --temporary` falhou com `fetch failed` por bloqueio de rede. Não foi gerada URL pública e a versão principal não foi alterada.
-- O draft do ambiente foi salvo com os destinos `api.cloudflare.com`, `*.workers.dev`, `cdn.playwright.dev` e `playwright.download.prss.microsoft.com`. O save confirmou `requires_publish: true`; ele não aplica a rede à máquina atual.
-- Para retentar a publicação temporária, salve as mudanças nas configurações do ambiente e publique o ambiente; depois, reexecute o deploy e valide a URL gerada.
+- `wrangler deploy --dry-run` empacotou 17 arquivos; o deploy foi realizado com `--temporary`, sem sessão Cloudflare pessoal e sem alterar o Worker de produção.
+- URL pública de avaliação: <https://taxi-central-rio-preto-ls-preview.forested-raptorex.workers.dev/>. Versão Cloudflare: `c3df555a-9c77-4617-a054-885d753089f4`.
+- Verificação pública em Chromium: home 200; privacidade redireciona para a URL canônica e responde 200; página inexistente 404 personalizada; imagem WebP 200; sitemap XML 200. A página pública abriu sem erros de console ou requisições falhas.
+- O preview foi criado em uma conta temporária da Cloudflare. O Wrangler gerou um link de claim com janela de 60 minutos para vincular essa conta; esse link não foi incluído no repositório.
+- O draft do ambiente contém `api.cloudflare.com`, `*.workers.dev`, `cdn.playwright.dev` e `playwright.download.prss.microsoft.com`, além do SHA atual da branch. O save confirmou `requires_publish: true`; para que esses ajustes persistam em próximas sessões, revise e publique o ambiente nas configurações. A prévia já está acessível independentemente desse passo.
 
 ## Pendências
 
-- Salvar e publicar o draft de egress do ambiente; então repetir o deploy temporário e os testes Firefox/WebKit.
+- Salvar e publicar o draft do ambiente para persistir a branch e os destinos de rede nas próximas sessões.
+- Firefox/WebKit seguem pendentes: os downloads do Playwright receberam `403 Domain forbidden`; repetir após publicar o draft de rede.
 - Anexar a imagem de referência/fotografia original autorizada, se deve substituir a ilustração.
 - Luís aprovar a paleta azul e o design antes de qualquer substituição da publicação principal.
 - Fornecer a logomarca oficial e concluir a revisão comercial/jurídica da política de privacidade.
