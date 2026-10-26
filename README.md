@@ -45,10 +45,10 @@ Para iniciar localmente depois do build: `npx wrangler dev --local --port 8787`.
 - Configuração: `cloudflare.config.ts` (deploy via `cf`) e `wrangler.jsonc` (deploy integrado atual via Wrangler), saída estática em `dist/`. Manter as opções de tratamento HTML e 404 alinhadas nos dois arquivos.
 - Verificar o pacote sem publicar: `cf build` ou `npx wrangler deploy --dry-run --assets ./dist`.
 - O Workers Builds do repositório está configurado para `npm run build` e `npx wrangler deploy --name taxi-central-rio-preto-ls --compatibility-date 2026-10-06 --assets ./dist`; o `wrangler.jsonc` fornece ao comando os modos de HTML e 404.
-- `npm run deploy` publica no Worker principal da conta autenticada. Use esse comando somente quando a publicação principal estiver aprovada.
+- `npm run deploy` publica no Worker principal da conta autenticada. A versão azul foi publicada no Worker principal após instrução explícita do responsável pelo projeto.
 - Para uma avaliação isolada, use `npx wrangler deploy --temporary --name taxi-central-rio-preto-ls-preview --compatibility-date 2026-10-06 --assets ./dist`. Isso requer acesso de rede ao Cloudflare; não publica no Worker principal.
 
-O endereço `workers.dev` é temporário até a escolha de um domínio oficial. Canonical, Open Graph e sitemap apontam para o endereço público atual. A integração de produção acompanha `main`; a branch de avaliação deste trabalho não substitui a publicação principal.
+O endereço `workers.dev` é temporário até a escolha de um domínio oficial. Canonical, Open Graph e sitemap apontam para o endereço público atual. A integração de produção acompanha `main`; a branch `preview/blue-identity-luis-2026-10` foi promovida por fast-forward após a autorização de publicação.
 
 ## Identidade, imagem e conteúdo
 
@@ -56,4 +56,4 @@ A ilustração do SUV branco foi editada com ferramenta generativa para mostrar 
 
 ## Estado da publicação
 
-A última publicação principal e as pendências anteriores estão registradas em `RELATORIO_REFORMULACAO_UX_LUIS.md`. O trabalho de avaliação está detalhado em `RELATORIO_ENTREGA_FINAL_LUIS.md`. Prévia temporária publicada em <https://taxi-central-rio-preto-ls-preview.forested-raptorex.workers.dev/> (versão Cloudflare `c3df555a-9c77-4617-a054-885d753089f4`). O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.
+A publicação atual está em <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>. O relatório `RELATORIO_ENTREGA_FINAL_LUIS.md` documenta a promoção para produção, as verificações e as pendências. O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.

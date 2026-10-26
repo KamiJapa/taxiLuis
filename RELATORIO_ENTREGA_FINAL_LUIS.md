@@ -101,17 +101,15 @@ Capturas reais feitas no Chromium local:
 
 - Repositório: `KamiJapa/taxiLuis`.
 - `main` e o remoto estavam no commit base `ee929daeb3b409017637d6e4fc52fab00a3eee18` antes do trabalho.
-- Branch de avaliação enviada e confirmada: `preview/blue-identity-luis-2026-10`. O remoto confirma o commit final registrado no topo desta branch; `main` permanece no commit base `ee929daeb3b409017637d6e4fc52fab00a3eee18`.
+- A branch `preview/blue-identity-luis-2026-10` foi promovida para `main` por fast-forward após a instrução explícita de publicar o site principal. O commit de release foi `f9bd47b1f7da9a54fb7b16dc46c69de35f507052`; não houve force push. A entrega documental foi atualizada depois.
 - Nenhum force push foi usado; nenhum outro repositório foi alterado.
 
 ## Cloudflare
 
-- `wrangler deploy --dry-run --name taxi-central-rio-preto-ls-preview ...` passou e empacotou 17 arquivos.
-- `wrangler deploy --dry-run` empacotou 17 arquivos; o deploy foi realizado com `--temporary`, sem sessão Cloudflare pessoal e sem alterar o Worker de produção.
-- URL pública de avaliação: <https://taxi-central-rio-preto-ls-preview.forested-raptorex.workers.dev/>. Versão Cloudflare: `c3df555a-9c77-4617-a054-885d753089f4`.
-- Verificação pública em Chromium: home 200; privacidade redireciona para a URL canônica e responde 200; página inexistente 404 personalizada; imagem WebP 200; sitemap XML 200. A página pública abriu sem erros de console ou requisições falhas.
-- O preview foi criado em uma conta temporária da Cloudflare. O Wrangler gerou um link de claim com janela de 60 minutos para vincular essa conta; esse link não foi incluído no repositório.
-- O draft do ambiente contém `api.cloudflare.com`, `*.workers.dev`, `cdn.playwright.dev` e `playwright.download.prss.microsoft.com`, além do SHA atual da branch. O save confirmou `requires_publish: true`; para que esses ajustes persistam em próximas sessões, revise e publique o ambiente nas configurações. A prévia já está acessível independentemente desse passo.
+- `wrangler deploy --dry-run` empacotou 17 arquivos. Após a autorização explícita para publicação principal, a integração Workers Builds publicou a versão de `main` no Worker existente `taxi-central-rio-preto-ls`.
+- URL pública principal: <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>. O HTML atualizado ficou disponível cerca de 15 segundos após o fast-forward de `main`.
+- Verificação pública em Chromium: home 200; privacidade redireciona para a URL canônica e responde 200; página inexistente 404 personalizada; imagem WebP 200; sitemap XML 200. WhatsApp usa o número `5517988285557`; em 320 px não houve overflow horizontal e o CTA permaneceu visível.
+- O draft do ambiente contém os destinos necessários e o SHA atual da branch/repositório. O save confirmou `requires_publish: true`; publique o draft nas configurações para persistir o setup em sessões futuras. Isso não bloqueou o deploy por Workers Builds.
 
 ## Pendências
 
@@ -124,8 +122,8 @@ Capturas reais feitas no Chromium local:
 
 ## Aprovação
 
-O site continua em estado de avaliação. A paleta e o design ainda dependem da aprovação do Luís. Nenhuma mensagem foi enviada ao cliente e nenhuma publicação principal foi feita.
+O site está publicado no Worker principal por instrução explícita do responsável pelo projeto. A aprovação comercial do Luís para paleta e design ainda está pendente. Nenhuma mensagem foi enviada ao cliente.
 
-Mensagem sugerida para encaminhar ao Luís, depois que a URL pública temporária estiver disponível:
+Mensagem sugerida para encaminhar ao Luís:
 
 > Luís, preparei uma versão de avaliação do site com a identidade azul e contato direto pelo WhatsApp. A imagem do carro continua identificada como ilustração. Quando puder, veja a versão e me diga se aprova as cores e o visual; a foto de referência original ainda está pendente.
