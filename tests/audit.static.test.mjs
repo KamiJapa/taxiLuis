@@ -15,10 +15,11 @@ const whatsappLinks = (source = html) => [...source.matchAll(/<a\b[^>]*href="(ht
 
 test("hero mostra a marca, localização e CTA direto para WhatsApp", () => {
   const hero = html.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0] ?? "";
-  assert.ok(hero.includes("Sua corrida começa"));
+  assert.ok(hero.includes("Táxi em São José do"));
   assert.match(hero, /href="https:\/\/wa\.me\/5517988285557\?text=/);
   assert.match(hero, /Solicitar corrida pelo WhatsApp/);
   assert.match(hero, /href="tel:\+5517988285557"/);
+  assert.match(hero, /Combine sua viagem \/ corrida/);
   assert.ok(html.includes("Táxi em São José do Rio Preto"));
 });
 
@@ -35,18 +36,16 @@ test("IDs são únicos e âncoras internas resolvem", () => {
   assert.deepEqual(missing, []);
 });
 
-test("CTAs dos seis serviços abrem conversa contextual no WhatsApp", () => {
-  const cards = [...html.matchAll(/<article class="service-card[\s\S]*?<\/article>/g)].map((m) => m[0]);
-  assert.equal(cards.length, 6);
-  for (const card of cards) {
-    assert.match(card, /href="https:\/\/wa\.me\/5517988285557\?text=/);
-    assert.match(card, /Consultar pelo WhatsApp/);
-  }
+test("serviço confirmado e CTAs usam contato direto no WhatsApp", () => {
+  assert.match(html, /Corridas de táxi/);
+  assert.match(html, /href="https:\/\/wa\.me\/5517988285557\?text=/);
+  assert.match(html, /Falar com o Luís/);
+  assert.doesNotMatch(html, /Aeroportos e hotéis|Viagens entre cidades|Transporte executivo|Viagens particulares/);
 });
 
 test("todos os links WhatsApp usam o número correto e atributos seguros", () => {
   const links = whatsappLinks();
-  assert.ok(links.length >= 14, `links encontrados: ${links.length}`);
+  assert.ok(links.length >= 8, `links encontrados: ${links.length}`);
   for (const [tag, href] of links) {
     assert.equal(new URL(href).pathname, "/5517988285557");
     assert.match(tag, /target="_blank"/);
@@ -56,7 +55,7 @@ test("todos os links WhatsApp usam o número correto e atributos seguros", () =>
 
 test("número de telefone permite chamada nativa", () => {
   assert.ok([...html.matchAll(/href="tel:\+5517988285557"/g)].length >= 2);
-  assert.ok(html.includes("(17) 98828-5557"));
+  assert.match(html, /\(17\)(?:&nbsp;|\s)98828(?:&#8209;|-)5557/);
 });
 
 test("menu móvel mantém controles acessíveis e Escape", () => {
@@ -78,10 +77,10 @@ test("HTML contém metadados SEO e JSON-LD válido", () => {
   assert.ok(html.includes('<link rel="canonical"'));
 });
 
-test("metadados e estrutura não afirmam horário comercial não confirmado", () => {
+test("metadados e estrutura usam apenas serviço e área confirmados", () => {
   assert.doesNotMatch(html, /24 horas|Madrugada mediante agendamento|Disponibilidade 24/);
-  assert.match(html, /Região mediante consulta/);
-  assert.match(html, /disponibilidade para sua região/);
+  assert.match(html, /transporte de passageiros e corridas de táxi em São José do Rio Preto/);
+  assert.doesNotMatch(html, /aeroporto|outras cidades|interestaduais|intermunicipais/i);
 });
 
 test("FAQ descreve o contato direto e não o antigo formulário", () => {
@@ -96,8 +95,9 @@ test("página de privacidade corresponde ao comportamento atual", () => {
   assert.ok(privacy.includes("não possui formulário de solicitação"));
   assert.ok(privacy.includes("mensagem automaticamente"));
   assert.doesNotMatch(privacy, /planejador|dados de origem|destino, datas/);
-  assert.ok(privacy.includes("Google Fonts"));
+  assert.ok(privacy.includes("não solicita arquivos de fonte a provedores externos"));
   assert.ok(privacy.includes("Cloudflare"));
+  assert.doesNotMatch(privacy, /Google Fonts|Manrope/);
 });
 
 test("404 aponta para início e WhatsApp sem falar em planejamento", () => {
@@ -142,11 +142,13 @@ test("assets locais referenciados pela página existem após build", () => {
 });
 
 test("build inclui 404, privacidade, headers e fallback sem JavaScript", () => {
-  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "js/main.js"]) {
+  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "sitemap.xml", "js/main.js", "assets/images/corolla-cross-ilustrativo-taxi.webp"]) {
     assert.ok(existsSync(resolve(dist, file)), `dist/${file} ausente`);
   }
   assert.match(read("cloudflare.config.ts"), /notFoundHandling": "404-page"/);
   assert.match(read("wrangler.jsonc"), /"not_found_handling": "404-page"/);
   assert.match(read("_headers"), /Content-Security-Policy:/);
   assert.match(read("_headers"), /Strict-Transport-Security: max-age=31536000/);
+  assert.match(read("robots.txt"), /Sitemap: https:\/\/taxi-central-rio-preto-ls\.japa-kamitm\.workers\.dev\/sitemap\.xml/);
+  assert.match(read("sitemap.xml"), /<loc>https:\/\/taxi-central-rio-preto-ls\.japa-kamitm\.workers\.dev\/privacidade<\/loc>/);
 });
