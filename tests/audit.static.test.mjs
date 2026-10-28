@@ -53,7 +53,7 @@ test("todos os links WhatsApp usam o número correto e atributos seguros", () =>
   }
 });
 
-test("blocos e botões verdes preservam contato, FAQ e avisos da imagem", () => {
+test("blocos verdes, contato e foto do Corolla Cross", () => {
   assert.match(html, /class="hero__contact"[\s\S]*?<p class="hero__contact-name">Luís<\/p>[\s\S]*?Conversa direta/);
   assert.doesNotMatch(html.match(/<section class="hero__facts"[\s\S]*?<\/section>/)?.[0] ?? "", /Combine seu trajeto|Consulte disponibilidade/);
   assert.match(html, /class="service-feature"[\s\S]*?Solicite sua corrida[\s\S]*?class="button button--whatsapp"/);
@@ -63,8 +63,8 @@ test("blocos e botões verdes preservam contato, FAQ e avisos da imagem", () => 
   assert.ok(buttons.length >= 6, `botões WhatsApp: ${buttons.length}`);
   assert.ok(buttons.every(([, tag]) => /\bbutton--whatsapp\b/.test(tag)));
   assert.match(html, /class="direct-contact__phone" href="tel:\+5517988285557"><strong>Ligue(?:&nbsp;|\s)para(?:&nbsp;|\s)\(17\)(?:&nbsp;|\s)98828(?:&#8209;|-)5557<\/strong>/);
-  assert.match(html, /não é uma fotografia do veículo do Luís/);
-  assert.match(html, /não é uma foto do veículo do Luís/);
+  assert.match(html, /assets\/images\/corolla-cross-luis\.jpg/);
+  assert.doesNotMatch(html, /ilustração|não é uma foto|não é uma fotografia/i);
   assert.match(read("styles.css"), /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
   assert.match(read("styles.css"), /\.faq__list details\s*\{[^}]*border-color/);
 });
@@ -158,7 +158,7 @@ test("assets locais referenciados pela página existem após build", () => {
 });
 
 test("build inclui 404, privacidade, headers e fallback sem JavaScript", () => {
-  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "sitemap.xml", "js/main.js", "assets/images/corolla-cross-ilustrativo-taxi.webp"]) {
+  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "sitemap.xml", "js/main.js", "assets/images/corolla-cross-luis.jpg"]) {
     assert.ok(existsSync(resolve(dist, file)), `dist/${file} ausente`);
   }
   assert.match(read("cloudflare.config.ts"), /notFoundHandling": "404-page"/);

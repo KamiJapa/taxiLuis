@@ -9,7 +9,7 @@ Landing page em português para o Táxi Central Rio Preto LS, com contato direto
 - Menu móvel, FAQ nativo e CTAs que funcionam sem JavaScript.
 - Identidade azul e superfícies claras, com detalhes dourados discretos.
 - Ações e painéis de contato pelo WhatsApp em verde de alto contraste; seções gerais mantêm a identidade azul.
-- Imagem ilustrativa com “TAXI” na placa; não é uma foto do veículo real.
+- Fotografia do Toyota Corolla Cross 2026 branco informada pelo Luís.
 - Páginas de privacidade e 404 para o Worker estático.
 
 ## Arquivos
@@ -53,7 +53,7 @@ O endereço `workers.dev` é temporário até a escolha de um domínio oficial. 
 
 ## Identidade, imagem e conteúdo
 
-A ilustração do SUV branco foi editada com ferramenta generativa para mostrar “TAXI” na placa ilustrativa; não é uma foto documental do veículo do Luís. O arquivo original continua em `assets/images/corolla-cross-ilustrativo.webp`. A foto/referência original enviada pelo cliente não está neste workspace; substitua a ilustração somente quando a imagem autorizada estiver disponível. O conteúdo atual afirma apenas o serviço de táxi e a cidade informados. A marca oficial e a aprovação final do novo azul ainda estão pendentes.
+O arquivo `assets/images/corolla-cross-luis.jpg` contém a foto do veículo fornecida pelo Luís. A página usa essa imagem na abertura, nos metadados sociais e na seção do veículo.
 
 ## Estado da publicação
 

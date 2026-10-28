@@ -115,7 +115,7 @@ Capturas reais feitas no Chromium local:
 
 - Salvar e publicar o draft do ambiente para persistir a branch e os destinos de rede nas próximas sessões.
 - Firefox/WebKit seguem pendentes: os downloads do Playwright receberam `403 Domain forbidden`; repetir após publicar o draft de rede.
-- Anexar a imagem de referência/fotografia original autorizada, se deve substituir a ilustração.
+- Foto enviada depois pelo Luís e incorporada em `assets/images/corolla-cross-luis.jpg` em 28/10/2026; avisos de ilustração removidos.
 - A autorização para publicar os ajustes verdes de WhatsApp ainda está pendente, conforme solicitado.
 - Fornecer a logomarca oficial e concluir a revisão comercial/jurídica da política de privacidade.
 - Reavaliar as vulnerabilidades restantes em uma tarefa própria de atualização major compatível.
@@ -134,9 +134,9 @@ Mensagem sugerida para encaminhar ao Luís:
 - Texto azul-marinho em `#25D366` tem contraste calculado de aproximadamente 7,96:1; texto branco no botão verde escuro `#0C6B36` tem aproximadamente 6,62:1.
 - “Luís” foi posicionado acima da tarja com os ícones e informações de conversa direta, trajeto e disponibilidade. O FAQ abaixo permanece com fundo original.
 - O CTA telefônico agora diz “Ligue para (17) 98828-5557”, em negrito e 17 px, com `tel:+5517988285557`.
-- O cliente enviou uma imagem do veículo nesta conversa, mas ela não ficou acessível como arquivo no workspace. O site publicado mantém a ilustração e os avisos de que ela não representa o veículo real; substituir quando o original estiver disponível como arquivo.
+- A foto do veículo foi adicionada ao repositório a partir do `main`; a atualização da página usa `assets/images/corolla-cross-luis.jpg`.
 - Arquivos locais alterados: `index.html`, `styles.css`, `tests/audit.static.test.mjs`, `README.md` e este relatório. Nenhuma dependência foi adicionada.
 - `npm run build`, `npm run test:static` (18/18), `html-validate` e Playwright Chromium/axe passaram. Foram verificadas 10 larguras entre 320 e 1920 px, links de WhatsApp/telefone, menu, FAQ e contraste automatizado; não houve overflow, erros de console ou violações axe.
 - As capturas de tela atuais foram salvas fora do repositório em `/tmp/taxiluis-desktop.png` e `/tmp/taxiluis-mobile.png`.
 - Atualização após autorização do cliente: deploy direto via Wrangler concluído em 27/10/2026 no Worker `taxi-central-rio-preto-ls`, versão `61bbf371-487b-4355-817f-92def75b2675`. A URL pública respondeu HTTP 200 e serviu o HTML e CSS atualizados. Não houve commit nem push.
-- A identidade azul foi preservada. A foto real ainda está pendente de arquivo acessível; a ilustração e seus avisos continuam publicados.
+- A identidade azul foi preservada. Atualização de 28/10/2026: a foto fornecida pelo Luís substitui a ilustração; as mensagens de imagem ilustrativa foram removidas.
