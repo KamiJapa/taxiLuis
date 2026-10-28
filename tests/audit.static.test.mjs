@@ -65,7 +65,10 @@ test("blocos verdes, contato e foto do Corolla Cross", () => {
   assert.match(html, /class="direct-contact__phone" href="tel:\+5517988285557"><strong>Ligue(?:&nbsp;|\s)para(?:&nbsp;|\s)\(17\)(?:&nbsp;|\s)98828(?:&#8209;|-)5557<\/strong>/);
   assert.match(html, /assets\/images\/corolla-cross-luis-taxi\.webp/);
   assert.doesNotMatch(html, /ilustração|não é uma foto|não é uma fotografia/i);
-  assert.match(read("styles.css"), /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
+  const css = read("styles.css");
+  assert.match(css, /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
+  assert.match(css, /\.button--whatsapp\s*\{[^}]*text-transform:\s*uppercase/i);
+  assert.match(css, /\.hero__facts strong,\s*\.hero__facts small\s*\{\s*text-transform:\s*uppercase/);
   assert.match(read("styles.css"), /\.faq__list details\s*\{[^}]*border-color/);
 });
 

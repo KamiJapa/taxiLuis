@@ -551,7 +551,12 @@ body { background: #f5f8fc; color: #0c2340; }
   background: #25d366;
   border-color: #25d366;
   box-shadow: 0 8px 22px rgba(4, 51, 27, .2);
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: .025em;
+  text-transform: uppercase;
 }
+.button--small.button--whatsapp { font-size: 13px; }
 .button--whatsapp:hover {
   color: #0c2340;
   background: #20bf5b;
@@ -568,8 +573,9 @@ body { background: #f5f8fc; color: #0c2340; }
   margin: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(12, 35, 64, .28);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 750;
+  text-transform: uppercase;
 }
 .hero__facts {
   margin-top: 0;
@@ -579,6 +585,10 @@ body { background: #f5f8fc; color: #0c2340; }
 .hero__facts .fact-icon,
 .hero__facts strong,
 .hero__facts small { color: #0c2340; }
+.hero__facts strong,
+.hero__facts small { text-transform: uppercase; }
+.hero__facts strong { font-size: 17px; }
+.hero__facts small { font-size: 14px; }
 .hero__contact :focus-visible { outline-color: #0c2340; }
 .service-feature {
   padding: 26px 30px;
@@ -594,6 +604,10 @@ body { background: #f5f8fc; color: #0c2340; }
 .service-feature h3,
 .service-feature p,
 .service-feature .text-link { color: #0c2340; }
+.service-feature h3,
+.service-feature p { text-transform: uppercase; }
+.service-feature h3 { font-size: 27px; }
+.service-feature p { font-size: 16px; }
 .service-feature .button--whatsapp,
 .faq__contact-panel .button--whatsapp {
   color: #fff;
@@ -616,6 +630,9 @@ body { background: #f5f8fc; color: #0c2340; }
 }
 .faq__contact-panel h2 span { color: #0c2340; }
 .faq__grid > div.faq__contact-panel > p:not(.eyebrow) { color: #0c2340; }
+.faq__contact-panel h2,
+.faq__contact-panel > p:not(.eyebrow) { text-transform: uppercase; }
+.faq__contact-panel > p:not(.eyebrow) { font-size: 16px; }
 .faq__contact-panel .button { margin-top: 8px; }
 .faq__contact-panel :focus-visible { outline-color: #0c2340; }
 .direct-contact__actions > a.direct-contact__phone {
@@ -643,5 +660,12 @@ body { background: #f5f8fc; color: #0c2340; }
   .faq__contact-panel { padding: 24px; }
 }
 @media (max-width: 460px) {
+  .button--whatsapp { font-size: 15px; }
+  .button--small.button--whatsapp { font-size: 12px; }
+  .hero__facts strong { font-size: 15px; }
+  .hero__facts small { font-size: 13px; }
+  .service-feature h3 { font-size: 23px; }
+  .service-feature p,
+  .faq__contact-panel > p:not(.eyebrow) { font-size: 15px; }
   .service-feature .button--whatsapp { grid-column: 1; justify-self: stretch; }
 }
