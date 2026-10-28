@@ -544,3 +544,104 @@ body { background: #f5f8fc; color: #0c2340; }
   .hero__grid { grid-template-columns: .95fr 1.05fr; gap: 3.5%; }
   .hero h1 { font-size: clamp(52px, 4.6vw, 68px); }
 }
+
+/* WhatsApp contact surfaces: vivid green with dark text for readable contrast. */
+.button--whatsapp {
+  color: #0c2340;
+  background: #25d366;
+  border-color: #25d366;
+  box-shadow: 0 8px 22px rgba(4, 51, 27, .2);
+}
+.button--whatsapp:hover {
+  color: #0c2340;
+  background: #20bf5b;
+  border-color: #20bf5b;
+}
+.button--whatsapp:focus-visible { outline-color: #0c2340; }
+.hero__contact {
+  padding: 14px 18px 17px;
+  border-radius: 12px;
+  background: #25d366;
+  color: #0c2340;
+}
+.hero__contact-name {
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(12, 35, 64, .28);
+  font-size: 16px;
+  font-weight: 750;
+}
+.hero__facts {
+  margin-top: 0;
+  padding-top: 12px;
+  border: 0;
+}
+.hero__facts .fact-icon,
+.hero__facts strong,
+.hero__facts small { color: #0c2340; }
+.hero__contact :focus-visible { outline-color: #0c2340; }
+.service-feature {
+  padding: 26px 30px;
+  border: 0;
+  border-radius: 14px;
+  background: #25d366;
+  color: #0c2340;
+}
+.service-feature__mark {
+  border-color: rgba(12, 35, 64, .55);
+  color: #0c2340;
+}
+.service-feature h3,
+.service-feature p,
+.service-feature .text-link { color: #0c2340; }
+.service-feature .button--whatsapp,
+.faq__contact-panel .button--whatsapp {
+  color: #fff;
+  background: #0c6b36;
+  border-color: #0c6b36;
+}
+.service-feature .button--whatsapp:hover,
+.faq__contact-panel .button--whatsapp:hover {
+  color: #fff;
+  background: #07592d;
+  border-color: #07592d;
+}
+.service-feature :focus-visible { outline-color: #0c2340; }
+.faq__contact-panel {
+  align-self: start;
+  padding: 28px;
+  border-radius: 14px;
+  background: #25d366;
+  color: #0c2340;
+}
+.faq__contact-panel h2 span { color: #0c2340; }
+.faq__grid > div.faq__contact-panel > p:not(.eyebrow) { color: #0c2340; }
+.faq__contact-panel .button { margin-top: 8px; }
+.faq__contact-panel :focus-visible { outline-color: #0c2340; }
+.direct-contact__actions > a.direct-contact__phone {
+  min-height: 44px;
+  color: #0c2340;
+  font-size: 17px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.footer__whatsapp {
+  border-color: #25d366;
+  color: #0c2340;
+  background: #25d366;
+}
+.footer__whatsapp:hover { color: #0c2340; background: #20bf5b; }
+.floating-whatsapp {
+  border-color: #25d366;
+  color: #0c2340;
+  background: #25d366;
+}
+.floating-whatsapp:hover { color: #0c2340; background: #20bf5b; }
+@media (max-width: 760px) {
+  .service-feature { padding: 22px; }
+  .service-feature .button--whatsapp { grid-column: 2; justify-self: start; }
+  .faq__contact-panel { padding: 24px; }
+}
+@media (max-width: 460px) {
+  .service-feature .button--whatsapp { grid-column: 1; justify-self: stretch; }
+}

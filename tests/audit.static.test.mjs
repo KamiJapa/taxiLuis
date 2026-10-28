@@ -19,7 +19,7 @@ test("hero mostra a marca, localização e CTA direto para WhatsApp", () => {
   assert.match(hero, /href="https:\/\/wa\.me\/5517988285557\?text=/);
   assert.match(hero, /Solicitar corrida pelo WhatsApp/);
   assert.match(hero, /href="tel:\+5517988285557"/);
-  assert.match(hero, /Combine sua viagem \/ corrida/);
+  assert.match(hero, /Fale diretamente com o Luís pelo WhatsApp\./);
   assert.ok(html.includes("Táxi em São José do Rio Preto"));
 });
 
@@ -51,6 +51,22 @@ test("todos os links WhatsApp usam o número correto e atributos seguros", () =>
     assert.match(tag, /target="_blank"/);
     assert.match(tag, /rel="[^"]*noopener[^"]*noreferrer[^"]*"/);
   }
+});
+
+test("blocos e botões verdes preservam contato, FAQ e avisos da imagem", () => {
+  assert.match(html, /class="hero__contact"[\s\S]*?<p class="hero__contact-name">Luís<\/p>[\s\S]*?Conversa direta/);
+  assert.doesNotMatch(html.match(/<section class="hero__facts"[\s\S]*?<\/section>/)?.[0] ?? "", /Combine seu trajeto|Consulte disponibilidade/);
+  assert.match(html, /class="service-feature"[\s\S]*?Solicite sua corrida[\s\S]*?class="button button--whatsapp"/);
+  assert.match(html, /class="faq__contact-panel"[\s\S]*?Enviar uma pergunta/);
+  assert.match(html, /class="faq__list"/);
+  const buttons = [...html.matchAll(/<a\b([^>]*class="[^"]*\bbutton\b[^"]*"[^>]*)href="(https:\/\/wa\.me\/[^\"]*)"[^>]*>/g)];
+  assert.ok(buttons.length >= 6, `botões WhatsApp: ${buttons.length}`);
+  assert.ok(buttons.every(([, tag]) => /\bbutton--whatsapp\b/.test(tag)));
+  assert.match(html, /class="direct-contact__phone" href="tel:\+5517988285557"><strong>Ligue(?:&nbsp;|\s)para(?:&nbsp;|\s)\(17\)(?:&nbsp;|\s)98828(?:&#8209;|-)5557<\/strong>/);
+  assert.match(html, /não é uma fotografia do veículo do Luís/);
+  assert.match(html, /não é uma foto do veículo do Luís/);
+  assert.match(read("styles.css"), /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
+  assert.match(read("styles.css"), /\.faq__list details\s*\{[^}]*border-color/);
 });
 
 test("número de telefone permite chamada nativa", () => {

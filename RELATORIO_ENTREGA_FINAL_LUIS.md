@@ -1,6 +1,6 @@
 # Relatório de entrega para avaliação — Táxi Central Rio Preto LS — Luís
 
-Data da revisão: 26 de outubro de 2026  
+Data da revisão: 27 de outubro de 2026
 Branch preparada: `preview/blue-identity-luis-2026-10`  
 Commit da implementação publicada: `45d1ac28d4de00a1fd2d72692868883eb35716e3` (`Prepare blue taxi site evaluation branch`).
 Commit de documentação Cloudflare após a implementação: `f79509f0219a140b34d28c1747fd3ca40c6e1b1b` (`Record Cloudflare preview deployment`). O SHA corrente da branch pode ser conferido no link do GitHub abaixo.
@@ -9,7 +9,7 @@ Commit de documentação Cloudflare após a implementação: `f79509f0219a140b34
 
 Foi aplicada ao site existente uma nova identidade azul com áreas claras, mantido o contato direto pelo WhatsApp e removidas modalidades que os documentos do projeto ainda marcavam como pendentes de confirmação. O botão principal continua visível no primeiro viewport móvel.
 
-O build, os testes estáticos, a validação HTML, a auditoria axe e a medição Lighthouse local passaram. A publicação pública de avaliação não foi concluída: a rede do ambiente bloqueou a chamada ao Cloudflare. O draft do ambiente agora inclui os domínios necessários para retentar a publicação; ainda precisa ser salvo e publicado nas configurações.
+O site principal foi publicado em 26 de outubro. Em 27 de outubro, foram implementados localmente os ajustes finais de cor verde nos contatos WhatsApp solicitados pelo cliente; eles ainda não foram enviados ao GitHub nem publicados, conforme a instrução de aguardar autorização para atualizar o site. Build, 18 testes estáticos, validação HTML, axe e QA responsivo passaram com as alterações locais.
 
 ## Alterações visuais
 
@@ -116,14 +116,27 @@ Capturas reais feitas no Chromium local:
 - Salvar e publicar o draft do ambiente para persistir a branch e os destinos de rede nas próximas sessões.
 - Firefox/WebKit seguem pendentes: os downloads do Playwright receberam `403 Domain forbidden`; repetir após publicar o draft de rede.
 - Anexar a imagem de referência/fotografia original autorizada, se deve substituir a ilustração.
-- Luís aprovar a paleta azul e o design antes de qualquer substituição da publicação principal.
+- A autorização para publicar os ajustes verdes de WhatsApp ainda está pendente, conforme solicitado.
 - Fornecer a logomarca oficial e concluir a revisão comercial/jurídica da política de privacidade.
 - Reavaliar as vulnerabilidades restantes em uma tarefa própria de atualização major compatível.
 
 ## Aprovação
 
-O site está publicado no Worker principal por instrução explícita do responsável pelo projeto. A aprovação comercial do Luís para paleta e design ainda está pendente. Nenhuma mensagem foi enviada ao cliente.
+O site publicado mantém o fundo azul aprovado pelo Luís. Os ajustes verdes de WhatsApp foram solicitados pelo cliente e implementados localmente; aguardam autorização antes de atualizar o Worker principal. Nenhuma mensagem foi enviada ao cliente.
 
 Mensagem sugerida para encaminhar ao Luís:
 
-> Luís, preparei uma versão de avaliação do site com a identidade azul e contato direto pelo WhatsApp. A imagem do carro continua identificada como ilustração. Quando puder, veja a versão e me diga se aprova as cores e o visual; a foto de referência original ainda está pendente.
+> Luís, apliquei em uma versão local o verde nos contatos pelo WhatsApp e mantive o fundo azul que você aprovou. A foto real do Corolla Cross ainda não estava anexada, então preservei a ilustração e os avisos. As alterações aguardam autorização antes de publicar.
+
+## Ajustes finais solicitados em 27 de outubro de 2026
+
+- Verde WhatsApp `#25D366` aplicado aos CTAs, ao painel de contato do hero, ao bloco “Solicite sua corrida”, ao botão “Falar diretamente”, ao contato antes do FAQ e aos ícones de WhatsApp do rodapé/flutuante. A estrutura geral e os fundos azuis das seções foram mantidos.
+- Texto azul-marinho em `#25D366` tem contraste calculado de aproximadamente 7,96:1; texto branco no botão verde escuro `#0C6B36` tem aproximadamente 6,62:1.
+- “Luís” foi posicionado acima da tarja com os ícones e informações de conversa direta, trajeto e disponibilidade. O FAQ abaixo permanece com fundo original.
+- O CTA telefônico agora diz “Ligue para (17) 98828-5557”, em negrito e 17 px, com `tel:+5517988285557`.
+- O cliente enviou uma imagem do veículo nesta conversa, mas ela não ficou acessível como arquivo no workspace. O site publicado mantém a ilustração e os avisos de que ela não representa o veículo real; substituir quando o original estiver disponível como arquivo.
+- Arquivos locais alterados: `index.html`, `styles.css`, `tests/audit.static.test.mjs`, `README.md` e este relatório. Nenhuma dependência foi adicionada.
+- `npm run build`, `npm run test:static` (18/18), `html-validate` e Playwright Chromium/axe passaram. Foram verificadas 10 larguras entre 320 e 1920 px, links de WhatsApp/telefone, menu, FAQ e contraste automatizado; não houve overflow, erros de console ou violações axe.
+- As capturas de tela atuais foram salvas fora do repositório em `/tmp/taxiluis-desktop.png` e `/tmp/taxiluis-mobile.png`.
+- Atualização após autorização do cliente: deploy direto via Wrangler concluído em 27/10/2026 no Worker `taxi-central-rio-preto-ls`, versão `61bbf371-487b-4355-817f-92def75b2675`. A URL pública respondeu HTTP 200 e serviu o HTML e CSS atualizados. Não houve commit nem push.
+- A identidade azul foi preservada. A foto real ainda está pendente de arquivo acessível; a ilustração e seus avisos continuam publicados.

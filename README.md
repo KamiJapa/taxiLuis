@@ -8,6 +8,7 @@ Landing page em português para o Táxi Central Rio Preto LS, com contato direto
 - Telefone clicável e links contextuais para iniciar uma conversa.
 - Menu móvel, FAQ nativo e CTAs que funcionam sem JavaScript.
 - Identidade azul e superfícies claras, com detalhes dourados discretos.
+- Ações e painéis de contato pelo WhatsApp em verde de alto contraste; seções gerais mantêm a identidade azul.
 - Imagem ilustrativa com “TAXI” na placa; não é uma foto do veículo real.
 - Páginas de privacidade e 404 para o Worker estático.
 
@@ -56,4 +57,4 @@ A ilustração do SUV branco foi editada com ferramenta generativa para mostrar 
 
 ## Estado da publicação
 
-A publicação atual está em <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>. O relatório `RELATORIO_ENTREGA_FINAL_LUIS.md` documenta a promoção para produção, as verificações e as pendências. O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.
+A publicação atual está em <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>. O relatório `RELATORIO_ENTREGA_FINAL_LUIS.md` documenta as verificações e pendências. O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.
