@@ -585,8 +585,8 @@ body { background: #f5f8fc; color: #0c2340; }
 .hero__facts .fact-icon,
 .hero__facts strong,
 .hero__facts small { color: #0c2340; }
-.hero__facts strong,
-.hero__facts small { text-transform: uppercase; }
+.hero__facts strong { text-transform: uppercase; }
+.hero__facts small { text-transform: none; }
 .hero__facts strong { font-size: 17px; }
 .hero__facts small { font-size: 14px; }
 .hero__contact :focus-visible { outline-color: #0c2340; }
@@ -604,8 +604,8 @@ body { background: #f5f8fc; color: #0c2340; }
 .service-feature h3,
 .service-feature p,
 .service-feature .text-link { color: #0c2340; }
-.service-feature h3,
-.service-feature p { text-transform: uppercase; }
+.service-feature h3 { text-transform: uppercase; }
+.service-feature p { text-transform: none; }
 .service-feature h3 { font-size: 27px; }
 .service-feature p { font-size: 16px; }
 .service-feature .button--whatsapp,
@@ -630,8 +630,8 @@ body { background: #f5f8fc; color: #0c2340; }
 }
 .faq__contact-panel h2 span { color: #0c2340; }
 .faq__grid > div.faq__contact-panel > p:not(.eyebrow) { color: #0c2340; }
-.faq__contact-panel h2,
-.faq__contact-panel > p:not(.eyebrow) { text-transform: uppercase; }
+.faq__contact-panel h2 { text-transform: uppercase; }
+.faq__contact-panel > p:not(.eyebrow) { text-transform: none; }
 .faq__contact-panel > p:not(.eyebrow) { font-size: 16px; }
 .faq__contact-panel .button { margin-top: 8px; }
 .faq__contact-panel :focus-visible { outline-color: #0c2340; }

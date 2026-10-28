@@ -68,7 +68,10 @@ test("blocos verdes, contato e foto do Corolla Cross", () => {
   const css = read("styles.css");
   assert.match(css, /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
   assert.match(css, /\.button--whatsapp\s*\{[^}]*text-transform:\s*uppercase/i);
-  assert.match(css, /\.hero__facts strong,\s*\.hero__facts small\s*\{\s*text-transform:\s*uppercase/);
+  assert.match(css, /\.hero__facts strong\s*\{\s*text-transform:\s*uppercase/);
+  assert.match(css, /\.hero__facts small\s*\{\s*text-transform:\s*none/);
+  assert.match(css, /\.service-feature h3\s*\{\s*text-transform:\s*uppercase/);
+  assert.match(css, /\.service-feature p\s*\{\s*text-transform:\s*none/);
   assert.match(read("styles.css"), /\.faq__list details\s*\{[^}]*border-color/);
 });
 
