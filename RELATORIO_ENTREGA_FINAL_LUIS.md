@@ -140,3 +140,4 @@ Mensagem sugerida para encaminhar ao Luís:
 - As capturas de tela atuais foram salvas fora do repositório em `/tmp/taxiluis-desktop.png` e `/tmp/taxiluis-mobile.png`.
 - Atualização após autorização do cliente: deploy direto via Wrangler concluído em 27/10/2026 no Worker `taxi-central-rio-preto-ls`, versão `61bbf371-487b-4355-817f-92def75b2675`. A URL pública respondeu HTTP 200 e serviu o HTML e CSS atualizados. Não houve commit nem push.
 - A identidade azul foi preservada. Atualização de 28/10/2026: a foto fornecida pelo Luís substitui a ilustração; as mensagens de imagem ilustrativa foram removidas.
+- Pedido adicional de 28/10/2026: foi criada uma versão editada em alta resolução com “TAXI” na placa, salva em `assets/images/corolla-cross-luis-taxi.webp`; o JPG original foi mantido em `assets/images/corolla-cross-luis.jpg`.

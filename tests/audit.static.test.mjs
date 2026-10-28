@@ -63,7 +63,7 @@ test("blocos verdes, contato e foto do Corolla Cross", () => {
   assert.ok(buttons.length >= 6, `botões WhatsApp: ${buttons.length}`);
   assert.ok(buttons.every(([, tag]) => /\bbutton--whatsapp\b/.test(tag)));
   assert.match(html, /class="direct-contact__phone" href="tel:\+5517988285557"><strong>Ligue(?:&nbsp;|\s)para(?:&nbsp;|\s)\(17\)(?:&nbsp;|\s)98828(?:&#8209;|-)5557<\/strong>/);
-  assert.match(html, /assets\/images\/corolla-cross-luis\.jpg/);
+  assert.match(html, /assets\/images\/corolla-cross-luis-taxi\.webp/);
   assert.doesNotMatch(html, /ilustração|não é uma foto|não é uma fotografia/i);
   assert.match(read("styles.css"), /\.button--whatsapp\s*\{[^}]*background:\s*#25d366/i);
   assert.match(read("styles.css"), /\.faq__list details\s*\{[^}]*border-color/);
@@ -158,7 +158,7 @@ test("assets locais referenciados pela página existem após build", () => {
 });
 
 test("build inclui 404, privacidade, headers e fallback sem JavaScript", () => {
-  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "sitemap.xml", "js/main.js", "assets/images/corolla-cross-luis.jpg"]) {
+  for (const file of ["index.html", "404.html", "privacidade.html", "noscript.css", "_headers", "robots.txt", "sitemap.xml", "js/main.js", "assets/images/corolla-cross-luis-taxi.webp"]) {
     assert.ok(existsSync(resolve(dist, file)), `dist/${file} ausente`);
   }
   assert.match(read("cloudflare.config.ts"), /notFoundHandling": "404-page"/);

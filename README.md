@@ -53,7 +53,7 @@ O endereço `workers.dev` é temporário até a escolha de um domínio oficial. 
 
 ## Identidade, imagem e conteúdo
 
-O arquivo `assets/images/corolla-cross-luis.jpg` contém a foto do veículo fornecida pelo Luís. A página usa essa imagem na abertura, nos metadados sociais e na seção do veículo.
+`assets/images/corolla-cross-luis.jpg` preserva a foto recebida do Luís. A versão otimizada `assets/images/corolla-cross-luis-taxi.webp` aplica o pedido de destacar “TAXI” na placa e melhorar a resolução; a página a usa na abertura, nos metadados sociais e na seção do veículo.
 
 ## Estado da publicação
 
