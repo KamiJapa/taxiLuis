@@ -15,6 +15,7 @@ const whatsappLinks = (source = html) => [...source.matchAll(/<a\b[^>]*href="(ht
 
 test("hero mostra a marca, localização e CTA direto para WhatsApp", () => {
   const hero = html.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(hero, /<p class="hero__availability">24 HORAS<\/p>/);
   assert.ok(hero.includes("Táxi em São José do"));
   assert.match(hero, /href="https:\/\/wa\.me\/5517988285557\?text=/);
   assert.match(hero, /Solicitar corrida pelo WhatsApp/);
@@ -100,9 +101,13 @@ test("HTML contém metadados SEO e JSON-LD válido", () => {
 });
 
 test("metadados e estrutura usam apenas serviço e área confirmados", () => {
-  assert.doesNotMatch(html, /24 horas|Madrugada mediante agendamento|Disponibilidade 24/);
-  assert.match(html, /transporte de passageiros e corridas de táxi em São José do Rio Preto/);
-  assert.doesNotMatch(html, /aeroporto|outras cidades|interestaduais|intermunicipais/i);
+  assert.match(html, /class="wordmark__place">Rio Preto <b class="wordmark__owner">Luís<\/b> <i>LS<\/i>/);
+  const vehicleCta = html.match(/<section class="vehicle[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(vehicleCta, /class="button button--whatsapp vehicle__cta" href="https:\/\/wa\.me\/5517988285557\?text=/);
+  assert.match(vehicleCta, /Consultar uma corrida/);
+  const location = html.match(/<section class="regions[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(location, /O serviço informado é de transporte de passageiros e corridas\/viagens de táxi em São José do Rio Preto e região, inclusive interestaduais\./);
+  assert.match(location, /Consulte valores, diretamente com o Luís\./);
 });
 
 test("FAQ descreve o contato direto e não o antigo formulário", () => {
@@ -171,6 +176,6 @@ test("build inclui 404, privacidade, headers e fallback sem JavaScript", () => {
   assert.match(read("wrangler.jsonc"), /"not_found_handling": "404-page"/);
   assert.match(read("_headers"), /Content-Security-Policy:/);
   assert.match(read("_headers"), /Strict-Transport-Security: max-age=31536000/);
-  assert.match(read("robots.txt"), /Sitemap: https:\/\/taxi-central-rio-preto-ls\.japa-kamitm\.workers\.dev\/sitemap\.xml/);
-  assert.match(read("sitemap.xml"), /<loc>https:\/\/taxi-central-rio-preto-ls\.japa-kamitm\.workers\.dev\/privacidade<\/loc>/);
+  assert.match(read("robots.txt"), /Sitemap: https:\/\/taxiluis\.vercel\.app\/sitemap\.xml/);
+  assert.match(read("sitemap.xml"), /<loc>https:\/\/taxiluis\.vercel\.app\/privacidade<\/loc>/);
 });

@@ -57,4 +57,4 @@ O endereço `workers.dev` é temporário até a escolha de um domínio oficial. 
 
 ## Estado da publicação
 
-A publicação atual está em <https://taxi-central-rio-preto-ls.japa-kamitm.workers.dev/>. O relatório `RELATORIO_ENTREGA_FINAL_LUIS.md` documenta as verificações e pendências. O draft do ambiente com a branch atual e os destinos de rede deve ser publicado para persistir esses ajustes em sessões futuras.
+A URL de produção informada pelo responsável pelo projeto é <https://taxiluis.vercel.app/>. O projeto publica automaticamente pelo GitHub/Vercel quando alterações são enviadas à branch conectada. A URL pública não pôde ser verificada desta execução, pois o proxy de rede bloqueou a requisição. O relatório `RELATORIO_ENTREGA_FINAL_LUIS.md` documenta as verificações locais e pendências.
