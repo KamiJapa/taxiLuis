@@ -16,7 +16,7 @@ O domínio público não pôde ser validado nesta execução: a tentativa de ace
 
 | Pedido | Antes | Depois |
 |---|---|---|
-| Nome no cabeçalho móvel | O cabeçalho mostrava “Táxi Central / Rio Preto LS”. | “LUÍS” aparece junto à identificação “Rio Preto LS”, sem remover o menu. |
+| Nome no cabeçalho móvel | O cabeçalho mostrava “Táxi Central / Rio Preto LS”. | “LUÍS” aparece ao lado de “Táxi Central” na primeira linha; “Rio Preto LS” e o menu permanecem. |
 | Destaque na primeira tela | Não havia destaque de horário antes do H1. | “24 HORAS” aparece centralizado antes do título. O texto não promete chegada imediata. |
 | CTA na seção do veículo | “Consultar uma corrida” era um link textual. | É um botão verde `#25D366`, com foco visível e destino para WhatsApp `5517988285557`. |
 | Redação de Localização | A seção descrevia apenas corridas em São José do Rio Preto, SP. | Os dois parágrafos agora correspondem à redação fornecida, incluindo região/interestaduais e “Consulte valores, diretamente com o Luís.” |

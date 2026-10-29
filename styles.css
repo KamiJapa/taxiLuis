@@ -43,6 +43,7 @@ button, a, input, select, textarea, summary { -webkit-tap-highlight-color: trans
 .wordmark__name { font: 21px/1 var(--display); letter-spacing: -.035em; }
 .wordmark__place { color: var(--muted); font-size: 9px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; }
 .wordmark__owner { color: #fff; font-weight: 750; letter-spacing: .12em; }
+.wordmark__name .wordmark__owner { color: #d6b77c; font-size: .72em; }
 .wordmark__place i { color: var(--gold); font-style: normal; margin-left: 4px; letter-spacing: .18em; }
 .main-nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 32px); }
 .main-nav > a:not(.button) { color: #d1d0cb; font-size: 12px; transition: color .2s ease; }
