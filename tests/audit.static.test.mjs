@@ -44,6 +44,17 @@ test("serviço confirmado e CTAs usam contato direto no WhatsApp", () => {
   assert.doesNotMatch(html, /Aeroportos e hotéis|Viagens entre cidades|Transporte executivo|Viagens particulares/);
 });
 
+test("CTA Falar com o Luís na introdução é verde e mantém mensagem e destino", () => {
+  const intro = html.match(/<section class="intro[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(intro, /class="button button--whatsapp intro__cta" href="https:\/\/wa\.me\/5517988285557\?text=Ol%C3%A1%2C%20Lu%C3%ADs!%20Gostaria%20de%20consultar%20uma%20corrida\."/);
+  assert.match(intro, /Falar com o Luís <svg class="icon-arrow"/);
+  const css = read("styles.css");
+  assert.match(css, /\.intro \.button--whatsapp\.intro__cta\s*\{[^}]*color:\s*#fff;[^}]*background:\s*#0c6b36/);
+  assert.match(css, /\.intro \.button--whatsapp\.intro__cta:hover/);
+  assert.match(css, /\.intro \.button--whatsapp\.intro__cta:focus-visible/);
+  assert.match(css, /\.intro \.button--whatsapp\.intro__cta:active/);
+});
+
 test("todos os links WhatsApp usam o número correto e atributos seguros", () => {
   const links = whatsappLinks();
   assert.ok(links.length >= 8, `links encontrados: ${links.length}`);

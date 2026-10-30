@@ -569,6 +569,10 @@ body { background: #f5f8fc; color: #0c2340; }
 }
 .button--whatsapp:active { transform: translateY(0); }
 .button--whatsapp:focus-visible { outline-color: #0c2340; }
+.intro .button--whatsapp.intro__cta { color: #fff; background: #0c6b36; border-color: #0c6b36; }
+.intro .button--whatsapp.intro__cta:hover { color: #fff; background: #07592d; border-color: #07592d; }
+.intro .button--whatsapp.intro__cta:focus-visible { outline-color: #0c2340; }
+.intro .button--whatsapp.intro__cta:active { background: #064a26; border-color: #064a26; transform: translateY(0); }
 .hero__contact {
   padding: 14px 18px 17px;
   border-radius: 12px;
