@@ -101,7 +101,7 @@ test("HTML contém metadados SEO e JSON-LD válido", () => {
 });
 
 test("metadados e estrutura usam apenas serviço e área confirmados", () => {
-  assert.match(html, /class="wordmark__name">Táxi Central <b class="wordmark__owner">LUÍS<\/b><\/span>\s*<span class="wordmark__place">Rio Preto <i>LS<\/i>/);
+  assert.match(html, /class="wordmark__name">Táxi Central<\/span>\s*<span class="wordmark__place">Rio Preto <i>LS<\/i><\/span>\s*<\/a>\s*<span class="header__owner">LUÍS<\/span>/);
   const vehicleCta = html.match(/<section class="vehicle[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(vehicleCta, /class="button button--whatsapp vehicle__cta" href="https:\/\/wa\.me\/5517988285557\?text=/);
   assert.match(vehicleCta, /Consultar uma corrida/);
